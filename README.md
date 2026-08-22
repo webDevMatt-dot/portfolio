@@ -25,6 +25,12 @@ Hosted on GitHub Pages from the `main` branch root. Any push to `main` redeploys
 
 Everything lives in `index.html` — styles in a single `<style>` block, behaviour (scroll reveals, sticky header, card hover glow) in one `<script>` at the bottom.
 
+## Contact
+
+- **Email** — mgluis530@gmail.com
+- **WhatsApp** — [+258 84 701 0340](https://wa.me/258847010340) · [+27 71 613 4107](https://wa.me/27716134107)
+- **LinkedIn** — [matthew-gift-luis](https://www.linkedin.com/in/matthew-gift-luis-199505210/)
+
 ---
 
-Built by [Matt](https://github.com/webDevMatt-dot) · Godji Tech (PTY) Ltd
+Built by [Matthew Gift Luis](https://github.com/webDevMatt-dot) · Godji Tech (PTY) Ltd
