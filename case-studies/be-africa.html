@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BE Africa — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="Agency site for a Pan-African creative and marketing agency: Next.js 16, a WebGL fluid background, and Paystack payments verified server-side before a cedi is counted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Agency site &amp; payments</div>
+      <h1 class="reveal">BE Africa</h1>
+      <p class="tagline reveal">
+        A Pan-African creative and marketing agency whose clients include Nivea, Unilever, Hennessy
+        and Darling. The site had to look like that calibre of work — and take money for it, safely.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Full-stack &amp; deployment</dd></div>
+        <div><dt>Framework</dt><dd>Next.js 16 · React 19</dd></div>
+        <div><dt>Payments</dt><dd>Paystack · GHS</dd></div>
+        <div><dt>Hosting</dt><dd>Netlify</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live site:</span>
+        <a href="https://beafricagh.com/" target="_blank" rel="noopener">beafricagh.com</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The brief</h2>
+      <p>
+        BE Africa sells brand experience — activations, fabrication, events, campaigns across Ghana and
+        the continent. An agency that pitches immersive work cannot have a flat website; the site is
+        itself a portfolio piece, and prospective clients judge the agency by it before reading a word.
+      </p>
+      <p>
+        The second requirement was less glamorous and more consequential. The agency needed to
+        <strong>collect project deposits, invoice balances, retainers and activation payments</strong>
+        directly, without chasing bank transfers. That turns a marketing site into something that
+        handles money, and changes what "done" means.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>WebGL fluid background</h4>
+          <p>A real-time fluid simulation in three.js reacting to cursor movement — viscosity, Poisson pressure solving and BFECC advection — rather than a looping video pretending to be interactive.</p>
+        </div>
+        <div class="feature">
+          <h4>Single-page narrative</h4>
+          <p>About, eight services, selected projects, client wall, payments and contact on one anchored scroll, so the pitch reads in one continuous motion.</p>
+        </div>
+        <div class="feature">
+          <h4>Project gallery</h4>
+          <p>Activation work for Nivea, Bel Aqua, Darling, Tampico and Bullet, with imagery served as WebP and a media layer kept in data rather than hardcoded into components.</p>
+        </div>
+        <div class="feature">
+          <h4>Paystack payments</h4>
+          <p>Inline checkout in cedis with a named payer, email, amount and payment note — then verified server-side before anything is treated as paid.</p>
+        </div>
+        <div class="feature">
+          <h4>Contact via server actions</h4>
+          <p>Enquiries submitted through React server actions and delivered by transactional email, with no client-exposed endpoint to abuse.</p>
+        </div>
+        <div class="feature">
+          <h4>Motion &amp; detail</h4>
+          <p>Framer Motion transitions, rotating headline type and a custom cursor — tuned to stay the right side of the line between crafted and exhausting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The payment flow, properly</h2>
+      <p>
+        This is the part worth dwelling on, because it's where most implementations quietly go wrong.
+        Paystack's popup fires an <code class="mono">onSuccess</code> callback in the browser. It is
+        enormously tempting to treat that callback as proof of payment and show a success screen.
+      </p>
+      <div class="callout">
+        <span class="k">The rule</span>
+        <p>
+          A client-side callback is a claim, not evidence. Anyone can call it from a console. Nothing
+          is paid until the server has asked Paystack directly and been told so.
+        </p>
+      </div>
+      <div class="arch">
+<pre>  <b>Browser</b>
+    ├─ generate reference  BEA-{timestamp}-{random}
+    ├─ convert amount → subunit (pesewas ×100)
+    └─ open Paystack popup
+              │  onSuccess(transaction)
+              ▼
+  <b>POST /api/paystack/verify</b>   { reference, expectedAmount, currency }
+              │
+              │  GET api.paystack.co/transaction/verify/{ref}
+              │  Authorization: Bearer PAYSTACK_SECRET_KEY   <b>← server only</b>
+              ▼
+  <b>Match all three, or it isn't paid</b>
+    ├─ status   === "success"
+    ├─ amount   === expected subunit amount
+    └─ currency === expected currency
+              │
+              ▼
+  verified · pending · cancelled · error   → distinct UI states</pre>
+      </div>
+
+      <h3>Why each check earns its place</h3>
+      <ul>
+        <li><strong>Status</strong> catches abandoned and failed transactions that still fire callbacks.</li>
+        <li><strong>Amount</strong> is compared in minor units against what the server expected, so a tampered client amount fails the match instead of being trusted.</li>
+        <li><strong>Currency</strong> stops a transaction settled in the wrong currency from passing as a valid cedi payment.</li>
+      </ul>
+
+      <h3>Failing honestly</h3>
+      <p>
+        If the secret key isn't configured, the endpoint returns <strong>202 pending</strong> — not a
+        success, not a hard failure. The payment may well have gone through; the server simply cannot
+        prove it yet. The UI says exactly that and surfaces the reference so it can be reconciled by
+        hand. Silently claiming success on an unverifiable payment is how a client ends up delivering
+        work nobody paid for.
+      </p>
+      <p>
+        The reference format is deliberate too: <code class="mono">BEA-{timestamp}-{random}</code> is
+        sortable, collision-resistant and instantly recognisable in a Paystack dashboard full of
+        transactions from other merchants.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Keeping secrets out of a static build</h3>
+      <p>
+        Paystack uses two keys: a public key that belongs in the browser and a secret key that must
+        never reach it. The build pipeline's secret scanner flags anything key-shaped in output, so the
+        public key is explicitly declared as safe while the secret stays a server-only environment
+        variable, read exclusively inside the verify route.
+      </p>
+
+      <h3>A fluid simulation that doesn't melt phones</h3>
+      <p>
+        Per-frame WebGL fluid solving is the kind of feature that looks spectacular on a desktop and
+        destroys a mid-range Android battery. Resolution, solver iterations and bounce behaviour are
+        all parameterised so the effect can be dialled down rather than switched off wholesale.
+      </p>
+
+      <h3>Restraint in a maximalist brief</h3>
+      <p>
+        Custom cursor, rotating type, fluid background, scroll motion — each defensible alone, and
+        collectively capable of making a site unusable. The discipline was deciding what not to animate.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span><span class="tag">shadcn/ui</span><span class="tag">Radix UI</span>
+        <span class="tag">Framer Motion</span><span class="tag">three.js</span>
+        <span class="tag">Paystack</span><span class="tag">Resend</span><span class="tag">Netlify</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Hero &amp; fluid background</span><span>screenshot to add</span></div>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Services</span><span>screenshot to add</span></div>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Selected projects</span><span>screenshot to add</span></div>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Paystack payment panel</span><span>screenshot to add</span></div>
+        </figure>
+      </div>
+      <p class="redaction-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+        Payment captures will use a test amount only — no live transaction data.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="../index.html#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+      <a href="neeps-group.html">
+        Next: Neeps Group
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>
