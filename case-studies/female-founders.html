@@ -95,6 +95,30 @@
           <p>Homepage module control, approvals for business and marketing content, report moderation, user and login-log management, analytics and ticket purchase logs.</p>
         </div>
       </div>
+
+      <h3>And the operations layer</h3>
+      <p>
+        The part that decides whether a product survives contact with a real team. None of it is
+        user-facing; all of it is what stops the client phoning me every week.
+      </p>
+      <div class="features">
+        <div class="feature">
+          <h4>Message scheduler</h4>
+          <p>Recurring announcements posted on a schedule with explicit timezone handling, so a Friday 10:00 SAST reminder means the same thing to every admin.</p>
+        </div>
+        <div class="feature">
+          <h4>Email delivery monitoring</h4>
+          <p>Every transactional send tracked as delivered, failed or delayed, filterable by source. When a member says they never got the reminder, there's an answer.</p>
+        </div>
+        <div class="feature">
+          <h4>Retention analytics</h4>
+          <p>Per-member activity — last seen, active days over 7/30/total, tier, whether a device is registered — with quiet-30d and quiet-90d cohorts for re-engagement.</p>
+        </div>
+        <div class="feature">
+          <h4>Release control</h4>
+          <p>Store versions synced from App Store and Play Store, with an update prompt that can be made mandatory — the escape hatch when a build has to be retired fast.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -175,13 +199,57 @@
   <section class="reveal">
     <div class="wrap">
       <h2>Screens</h2>
-      <div class="shots">
-        <div class="shot"><span class="lbl">Member onboarding</span><span>screenshot to add</span></div>
-        <div class="shot"><span class="lbl">Event &amp; ticket purchase</span><span>screenshot to add</span></div>
-        <div class="shot"><span class="lbl">Member directory</span><span>screenshot to add</span></div>
-        <div class="shot"><span class="lbl">Admin console</span><span>screenshot to add</span></div>
+      <p class="sec-sub" style="margin-bottom:24px">
+        The member-facing app, then the admin and operations tooling behind it.
+      </p>
+      <div class="shots phone">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-home.jpg" alt="Member portal home with announcement carousel and event countdown" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Home — announcements, news ticker, next-event countdown</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-events.jpg" alt="Events listing with search" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Events — discovery and search</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-community.jpg" alt="Member directory with filters" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Directory — members, network, requests, polls</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-messages.jpg" alt="Messages with community, premium and direct threads" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Messages — tier-gated community and DMs</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-feed.jpg" alt="Premium content feed empty state" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Premium feed — including its empty state</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-admin.jpg" alt="Admin dashboard tool list" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Admin — homepage modules, alerts, spotlights</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-scheduler.jpg" alt="Recurring message scheduler" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Scheduler — recurring posts with timezone handling</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-usage.jpg" alt="Member activity and retention tracking" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Usage — activity, retention cohorts, tier</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-email.jpg" alt="Email delivery log with delivered, failed and delayed states" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Email delivery — delivered / failed / delayed</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ffig-updates.jpg" alt="App version control synced from the stores" loading="lazy" width="760" height="1646"></div>
+          <figcaption>Releases — store version sync and forced updates</figcaption>
+        </figure>
       </div>
-      <!-- To add an image: <div class="shot filled"><img src="../assets/shots/ffig-onboarding.png" alt="Member onboarding"></div> -->
+      <p class="redaction-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+        Member names, photographs and email addresses are blurred throughout. These are captures of a
+        live production system with real members, so every personal detail is redacted — only the
+        structure and the non-identifying metrics remain.
+      </p>
     </div>
   </section>
 
