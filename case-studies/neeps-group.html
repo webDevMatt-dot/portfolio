@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neeps Group — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="Public website plus a custom CRM and internal operations suite: leads, deals, inbox, HR, document generation and analytics across three Next.js applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Business platform</div>
+      <h1 class="reveal">Neeps Group</h1>
+      <p class="tagline reveal">
+        Not a brochure site. A public web presence bolted onto a custom CRM and internal operations
+        suite — leads, deals, inbox, HR and document generation — running as three coordinated
+        Next.js applications over one Postgres database.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Full-stack &amp; infrastructure</dd></div>
+        <div><dt>Apps</dt><dd>Three, one datastore</dd></div>
+        <div><dt>Framework</dt><dd>Next.js 16 · React 19</dd></div>
+        <div><dt>Data</dt><dd>PostgreSQL · Prisma</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live product:</span>
+        <a href="https://neepsconsulting.com/" target="_blank" rel="noopener">neepsconsulting.com</a>
+        <span>— the public site only; the operations suite sits behind authentication.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The brief</h2>
+      <p>
+        The visible half of this project is a marketing site: services, case studies, careers, team,
+        blog. The half that took the work is what sits behind the login.
+      </p>
+      <p>
+        Enquiries were arriving through a contact form and then living in someone's inbox. There was no
+        pipeline, no record of what had been quoted, and no link between a lead and the eventual client.
+        Internal admin — leave requests, employee documents, team records — ran on paper and email.
+      </p>
+      <p>
+        So the build became <strong>one system</strong>: capture the lead on the public site, work it
+        through a CRM, and run the business's internal paperwork in the same place.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+
+      <h3>Public site</h3>
+      <p>
+        Services, About, Team, Careers, Blog, Case Studies and a specialist interiors section, with the
+        contact form writing directly into the CRM rather than sending an email into the void.
+      </p>
+
+      <h3>CRM and operations console</h3>
+      <div class="features">
+        <div class="feature">
+          <h4>Leads &amp; contacts</h4>
+          <p>Every enquiry captured as a structured record, deduplicated against existing contacts, with source and status tracked.</p>
+        </div>
+        <div class="feature">
+          <h4>Deals &amp; customers</h4>
+          <p>Leads promoted through a pipeline into deals and, once won, into customer records — so history survives the handover.</p>
+        </div>
+        <div class="feature">
+          <h4>Inbox &amp; reply</h4>
+          <p>Threaded correspondence handled inside the console, with transactional sending so replies come from the business, not a personal account.</p>
+        </div>
+        <div class="feature">
+          <h4>Team &amp; leave</h4>
+          <p>Employee records plus a leave application and approval flow, replacing the emailed form.</p>
+        </div>
+        <div class="feature">
+          <h4>Document generation</h4>
+          <p>Internal documents and forms rendered server-side to PDF, so a leave form or client document is generated rather than hand-filled.</p>
+        </div>
+        <div class="feature">
+          <h4>Vouchers &amp; analytics</h4>
+          <p>Voucher issuing with QR encoding, and an analytics view over pipeline and enquiry volume.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <p>
+        Three separate Next.js applications — the main group site, an IT division site, and an
+        accounting division site — each deployable on its own, sharing one Postgres database through a
+        common Prisma schema.
+      </p>
+      <div class="arch">
+<pre>  <b>neeps_main</b>  :3000   public site + CRM + operations console
+  <b>neeps_IT</b>    :3001   IT division site
+  <b>neeps_accounting</b> :3002  accounting division site
+        │
+        │  Prisma Client
+        ▼
+  <b>PostgreSQL</b>   leads · contacts · deals · customers
+                 team · leave · documents · vouchers
+        │
+        ▼
+  <b>Services</b>  NextAuth (sessions &amp; roles)
+            Resend (transactional mail)
+            react-pdf (server-side documents)
+            qrcode (voucher payloads)</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          Three apps rather than one, because the divisions brand and release independently — but one
+          database, because a lead that arrives through the IT site is still a lead for the group.
+          A single dev command boots all three together so local work never drifts out of sync.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Auth with real roles</h3>
+      <p>
+        Staff, admin and division-level access over the same console, using NextAuth with a Prisma
+        adapter and middleware guarding the admin routes at the edge rather than per-page.
+      </p>
+
+      <h3>Documents that have to be right</h3>
+      <p>
+        Leave forms and internal documents are generated server-side as PDFs. Rendering to PDF on the
+        server keeps output identical regardless of who opens it — no browser print-dialog variance on
+        a document that goes into an employee file.
+      </p>
+
+      <h3>Mail that doesn't land in spam</h3>
+      <p>
+        Transactional sending through a dedicated provider with proper domain authentication, because a
+        CRM whose replies get filtered is worse than no CRM.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span><span class="tag">Framer Motion</span>
+        <span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">NextAuth</span>
+        <span class="tag">react-pdf</span><span class="tag">Resend</span><span class="tag">Hostinger</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <div class="shots">
+        <div class="shot"><span class="lbl">Public site — services</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Leads pipeline</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Deals board</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Generated PDF document</span><span>screenshot to add</span></div>
+      </div>
+      <!-- To add an image: <div class="shot filled"><img src="../assets/shots/neeps-leads.png" alt="Leads pipeline"></div> -->
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="female-founders.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Female Founders Initiative
+      </a>
+      <a href="nutrir-foods.html">
+        Next: Nutrir Foods
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>

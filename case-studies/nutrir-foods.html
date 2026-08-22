@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nutrir Foods — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="E-commerce for a natural health food brand: a Next.js storefront over Shopify, with a scripted product pipeline handling catalogue, metafields and SEO at import time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · E-commerce</div>
+      <h1 class="reveal">Nutrir Foods</h1>
+      <p class="tagline reveal">
+        E-commerce for a natural health food brand — a custom Next.js storefront sitting over Shopify's
+        commerce backend, with the product catalogue built and maintained by a scripted pipeline rather
+        than by hand.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Full-stack &amp; data</dd></div>
+        <div><dt>Storefront</dt><dd>Next.js · Tailwind</dd></div>
+        <div><dt>Commerce</dt><dd>Shopify</dd></div>
+        <div><dt>Pipeline</dt><dd>Python</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live product:</span>
+        <a href="https://www.nutrirfoods.com/" target="_blank" rel="noopener">nutrirfoods.com</a>
+        <span>— the live store changes with the brand's catalogue; this page documents the build.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The brief</h2>
+      <p>
+        Nutrir sells supplement and wellness products where each item needs real explanatory copy —
+        what it does, what's in it, who it's for. A default Shopify theme handles the transaction fine
+        but flattens that content into a generic product page.
+      </p>
+      <p>
+        The brand needed a storefront it controlled the presentation of, without giving up Shopify's
+        checkout, inventory and order management — the parts you do not want to rebuild.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Custom storefront</h4>
+          <p>Next.js front end with the brand's own layout and product presentation, rendering rich product copy properly instead of squeezing it into a theme.</p>
+        </div>
+        <div class="feature">
+          <h4>Catalogue structure</h4>
+          <p>Products organised by category and type with tags and variant options, so collections and filtering hold up as the range grows.</p>
+        </div>
+        <div class="feature">
+          <h4>Product data pipeline</h4>
+          <p>A Python script generating the full Shopify import — titles, HTML bodies, categories, tags, variants, metafields, SEO title and description — from one source list.</p>
+        </div>
+        <div class="feature">
+          <h4>SEO at import time</h4>
+          <p>Search metadata generated alongside each product rather than filled in afterwards, so nothing ships with a blank SEO description.</p>
+        </div>
+        <div class="feature">
+          <h4>Checkout &amp; payments</h4>
+          <p>Shopify's checkout and payment flow kept intact behind the custom front end — no reinventing a payment path that already works.</p>
+        </div>
+        <div class="feature">
+          <h4>Orders &amp; inventory</h4>
+          <p>Order and stock management stays in Shopify admin, where the client's team already knows how to work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <div class="arch">
+<pre>  <b>Source list</b>  (products, copy, categories)
+        │
+        │  generate_products.py
+        ▼
+  <b>Shopify import CSV</b>
+     handle · title · body HTML · vendor
+     category · type · tags · variants
+     metafields · SEO title &amp; description
+        │
+        ▼
+  <b>Shopify</b>  catalogue · inventory · checkout · orders
+        │
+        │  Storefront data
+        ▼
+  <b>Next.js storefront</b>  brand layout · product pages
+                       collections · cart handoff</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          Generating the catalogue rather than entering it. A range of this size entered by hand through
+          Shopify admin means inconsistent categories, missing metafields and blank SEO fields within a
+          month. Scripting the import makes the catalogue reproducible: fix the generator, re-import,
+          and every product is corrected at once.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Splitting responsibility cleanly</h3>
+      <p>
+        The rule was simple: anything commercial — money, stock, orders — stays with Shopify. Anything
+        about presentation belongs to the storefront. Blurring that line is how headless commerce
+        projects turn into maintenance problems.
+      </p>
+
+      <h3>Rich product copy in a CSV</h3>
+      <p>
+        Product bodies are formatted HTML with structured sections. Getting that through a CSV import
+        without mangling quoting or losing markup meant the generator had to own escaping rather than
+        trusting hand-edited spreadsheets.
+      </p>
+
+      <h3>Health claims and copy discipline</h3>
+      <p>
+        Supplement copy carries real constraints on what can be claimed. Keeping product descriptions in
+        a single generated source made it possible to review and adjust wording across the whole range
+        consistently, instead of chasing individual product pages.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span><span class="tag">Shopify</span>
+        <span class="tag">Shopify data infrastructure</span><span class="tag">Python</span>
+        <span class="tag">Payment APIs</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <div class="shots">
+        <div class="shot"><span class="lbl">Storefront home</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Product page</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Collection &amp; filtering</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Cart &amp; checkout handoff</span><span>screenshot to add</span></div>
+      </div>
+      <!-- To add an image: <div class="shot filled"><img src="../assets/shots/nutrir-product.png" alt="Product page"></div> -->
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="neeps-group.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Neeps Group
+      </a>
+      <a href="../index.html#work">
+        All work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>

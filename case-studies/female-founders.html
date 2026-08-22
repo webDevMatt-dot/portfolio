@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Female Founders Initiative Global — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A membership community platform for women founders: Flutter mobile app, Django/DRF backend, events and ticketing, tiered access, chat and a full admin console.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Platform &amp; Mobile</div>
+      <h1 class="reveal">Female Founders Initiative Global</h1>
+      <p class="tagline reveal">
+        A membership community platform for women founders — a Flutter app for members and admins,
+        backed by a Django service handling auth, events, ticketing, payments, messaging and moderation.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Full-stack &amp; mobile</dd></div>
+        <div><dt>Surface</dt><dd>iOS · Android · API</dd></div>
+        <div><dt>Backend</dt><dd>Django + DRF</dd></div>
+        <div><dt>App</dt><dd>Flutter</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live product:</span>
+        <a href="https://femalefoundersinitiative.com/" target="_blank" rel="noopener">femalefoundersinitiative.com</a>
+        <span>— the live site evolves independently; this page documents the build as I delivered it.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The brief</h2>
+      <p>
+        FFIG needed more than a website. The organisation runs events, curates resources, and connects
+        a community of founders across regions — and all of that was being coordinated manually across
+        disconnected tools.
+      </p>
+      <p>
+        The goal was a single product where members could <strong>discover and pay for events</strong>,
+        <strong>find and message each other</strong>, and <strong>access tiered content</strong>, while
+        the FFIG team ran the whole operation from an admin console rather than a spreadsheet.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Onboarding &amp; identity</h4>
+          <p>Registration, OTP verification, login and password reset, with session handling across both mobile platforms.</p>
+        </div>
+        <div class="feature">
+          <h4>Tiered membership</h4>
+          <p>Free, Standard, Premium and Admin tiers. Access rules centralised in a single membership service so entitlements stay consistent everywhere.</p>
+        </div>
+        <div class="feature">
+          <h4>Events &amp; ticketing</h4>
+          <p>Event discovery, RSVP and ticket purchase, multi-tier ticket types, speaker and agenda management, plus QR ticket verification at the door.</p>
+        </div>
+        <div class="feature">
+          <h4>Directory &amp; messaging</h4>
+          <p>Member directory with public profiles, direct messaging for premium members, and community chat.</p>
+        </div>
+        <div class="feature">
+          <h4>Content surfaces</h4>
+          <p>A story and reels-style feed for premium members, and a resource vault holding magazines, masterclasses and newsletters.</p>
+        </div>
+        <div class="feature">
+          <h4>Admin console</h4>
+          <p>Homepage module control, approvals for business and marketing content, report moderation, user and login-log management, analytics and ticket purchase logs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <p>
+        A monorepo splitting the Flutter client from a set of Django domain apps, each owning one slice
+        of the product rather than one giant service.
+      </p>
+      <div class="arch">
+<pre>  <b>mobile_app/</b>  Flutter — UI, app-side services, membership rules
+        │
+        │  REST (DRF)
+        ▼
+  <b>Django domain apps</b>
+    ├── authentication/   register · OTP · login · reset
+    ├── members/          profiles · directory · approvals
+    ├── events/           listings · tickets · QR verification
+    ├── payments/         purchase flow · logs
+    ├── chat/             direct messages · community
+    ├── community/        polls · quizzes
+    ├── resources/        vault · media attachments
+    └── home/             hero · spotlight · alerts · ticker
+        │
+        ▼
+  <b>Ops</b>  push notifications · universal links · analytics API</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          Membership entitlements live in one service rather than being checked ad hoc at each screen.
+          Adding a tier or moving a feature between tiers is a change in one file, not a hunt through
+          the UI layer — which matters on a product where the commercial model is still being tuned.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Ticketing that works offline at the door</h3>
+      <p>
+        Tickets carry a QR payload that admins scan to verify entry. Venue wifi is unreliable, so
+        verification had to degrade gracefully rather than block someone at the entrance.
+      </p>
+
+      <h3>Payments and push, together</h3>
+      <p>
+        Purchase flows and push notifications are the two subsystems where a silent failure costs real
+        money or real trust. Both got an operations runbook covering credential rotation, failure modes
+        and how to recover a stuck transaction — documentation the client's team could act on without me.
+      </p>
+
+      <h3>Universal links across two stores</h3>
+      <p>
+        Shared links needed to open the app when installed and fall back to the web otherwise, on both
+        iOS and Android — which means association files, signed domains, and store-specific handling.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">iOS</span>
+        <span class="tag">Android</span><span class="tag">Python</span><span class="tag">Django</span>
+        <span class="tag">Django REST Framework</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Payment APIs</span><span class="tag">Push notifications</span>
+        <span class="tag">Universal links</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <div class="shots">
+        <div class="shot"><span class="lbl">Member onboarding</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Event &amp; ticket purchase</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Member directory</span><span>screenshot to add</span></div>
+        <div class="shot"><span class="lbl">Admin console</span><span>screenshot to add</span></div>
+      </div>
+      <!-- To add an image: <div class="shot filled"><img src="../assets/shots/ffig-onboarding.png" alt="Member onboarding"></div> -->
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="../index.html#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+      <a href="neeps-group.html">
+        Next: Neeps Group
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>

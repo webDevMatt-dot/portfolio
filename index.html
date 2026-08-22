@@ -162,14 +162,20 @@
   .proj-idx{font-size:12px;color:var(--dim);letter-spacing:.08em}
   .proj-type{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;border:1px solid var(--line-2);color:var(--muted);white-space:nowrap}
   .proj h3{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px;line-height:1.3}
+  .proj-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-bottom:12px}
   .proj-link{
     display:inline-flex;align-items:center;gap:6px;
-    font-size:12.5px;color:var(--accent-2);margin-bottom:12px;
+    font-size:12.5px;color:var(--accent-2);
     border-bottom:1px solid transparent;transition:border-color .18s,color .18s;
     position:relative;z-index:2;
   }
+  .proj-links + p, .proj-link + p{margin-top:0}
   .proj-link svg{width:12px;height:12px;flex:none}
   .proj-link:hover{border-bottom-color:var(--accent-2)}
+  .proj-link.alt{color:var(--dim)}
+  .proj-link.alt:hover{color:var(--muted);border-bottom-color:var(--dim)}
+  .proj-link.study{font-weight:600;color:var(--accent)}
+  .proj-link.study:hover{border-bottom-color:var(--accent)}
   .proj p{font-size:14.5px;color:var(--muted);margin-bottom:18px;flex:1}
   .tags{display:flex;flex-wrap:wrap;gap:7px}
   .tag{font-size:11.5px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.035);border:1px solid var(--line);color:var(--muted)}
@@ -334,10 +340,12 @@
             <span class="proj-type">Web &amp; Mobile</span>
           </div>
           <h3>Dookie Deluxe — Website &amp; App</h3>
-          <a class="proj-link" href="https://dookiedeluxe.com/" target="_blank" rel="noopener">
-            dookiedeluxe.com
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
+          <div class="proj-links">
+            <a class="proj-link" href="https://dookiedeluxe.com/" target="_blank" rel="noopener">
+              dookiedeluxe.com
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
           <p>
             A brand website paired with a mobile app, built as one product across web and mobile so the
             experience, data and deployment stay consistent on both.
@@ -354,10 +362,12 @@
             <span class="proj-type">Digital platform</span>
           </div>
           <h3>Ada — Church Digital Platform</h3>
-          <a class="proj-link" href="https://ada.org.mz/" target="_blank" rel="noopener">
-            ada.org.mz
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
+          <div class="proj-links">
+            <a class="proj-link" href="https://ada.org.mz/" target="_blank" rel="noopener">
+              ada.org.mz
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
           <p>
             A digital home for a church community: website, content management and the digital tooling
             around events, media and communication with members.
@@ -424,18 +434,25 @@
             <span class="proj-idx mono">06</span>
             <span class="proj-type">Business platform</span>
           </div>
-          <h3>Neeps Group</h3>
-          <a class="proj-link" href="https://neepsconsulting.com/" target="_blank" rel="noopener">
-            neepsconsulting.com
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
+          <h3>Neeps Group — Website &amp; CRM Suite</h3>
+          <div class="proj-links">
+            <a class="proj-link study" href="case-studies/neeps-group.html">
+              Read case study
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="proj-link alt" href="https://neepsconsulting.com/" target="_blank" rel="noopener">
+              live site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
           <p>
-            Website and digital presence for the Neeps Group consulting practice — service pages,
-            enquiry handling and the hosting, domain and mail setup behind it.
+            Public site plus a custom CRM and internal operations console — leads, deals, inbox, team,
+            leave approvals, PDF document generation and analytics — running as three coordinated
+            Next.js apps over one Postgres database.
           </p>
           <div class="tags">
-            <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Tailwind CSS</span>
-            <span class="tag">Hostinger</span><span class="tag">Google Workspace</span>
+            <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">Prisma</span>
+            <span class="tag">PostgreSQL</span><span class="tag">NextAuth</span><span class="tag">react-pdf</span>
           </div>
         </article>
 
@@ -444,19 +461,25 @@
             <span class="proj-idx mono">07</span>
             <span class="proj-type">Platform · Web &amp; App</span>
           </div>
-          <h3>Female Founders Initiative</h3>
-          <a class="proj-link" href="https://femalefoundersinitiative.com/" target="_blank" rel="noopener">
-            femalefoundersinitiative.com
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
+          <h3>Female Founders Initiative Global</h3>
+          <div class="proj-links">
+            <a class="proj-link study" href="case-studies/female-founders.html">
+              Read case study
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="proj-link alt" href="https://femalefoundersinitiative.com/" target="_blank" rel="noopener">
+              live site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
           <p>
-            A global platform and companion app supporting a community of women founders — member
-            profiles, programme content and multi-region access, on a backend structured to grow with
-            the community.
+            A membership community platform for women founders — Flutter app for members and admins
+            over a Django/DRF backend handling OTP auth, tiered access, events with QR ticketing,
+            payments, messaging and a full moderation console.
           </p>
           <div class="tags">
-            <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span>
-            <span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Tailwind CSS</span>
+            <span class="tag">Flutter</span><span class="tag">Django</span><span class="tag">DRF</span>
+            <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Payments</span>
           </div>
         </article>
 
@@ -466,13 +489,20 @@
             <span class="proj-type">E-commerce</span>
           </div>
           <h3>Nutrir Foods</h3>
-          <a class="proj-link" href="https://www.nutrirfoods.com/" target="_blank" rel="noopener">
-            nutrirfoods.com
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
+          <div class="proj-links">
+            <a class="proj-link study" href="case-studies/nutrir-foods.html">
+              Read case study
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="proj-link alt" href="https://www.nutrirfoods.com/" target="_blank" rel="noopener">
+              live site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
           <p>
-            An e-commerce platform for a food brand — storefront, product and catalogue structure,
-            checkout and payment flow, plus the Shopify data infrastructure behind orders and inventory.
+            A custom Next.js storefront over Shopify's commerce backend, with the full product
+            catalogue — copy, categories, variants, metafields and SEO — generated by a Python
+            pipeline rather than entered by hand.
           </p>
           <div class="tags">
             <span class="tag">Shopify</span><span class="tag">Next.js</span><span class="tag">Payments</span>
