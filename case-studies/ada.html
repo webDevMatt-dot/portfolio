@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ada — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A church digital platform for Mozambique: Next.js and Django on a self-hosted Docker stack, with a congregation directory, shop, recruitment, prayer and helpline handling, and a full admin console.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Platform &amp; infrastructure</div>
+      <h1 class="reveal">Ada</h1>
+      <p class="tagline reveal">
+        Not a church website. A digital platform for a national denomination in Mozambique — thousands
+        of assemblies across districts, a shop, recruitment, pastoral care and a full admin console,
+        running on infrastructure I provisioned and maintain.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Full-stack &amp; DevOps</dd></div>
+        <div><dt>Frontend</dt><dd>Next.js · React</dd></div>
+        <div><dt>Backend</dt><dd>Django · DRF · PostgreSQL</dd></div>
+        <div><dt>Hosting</dt><dd>Self-hosted Docker VPS</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live site:</span>
+        <a href="https://ada.org.mz/" target="_blank" rel="noopener">ada.org.mz</a>
+        <span>— Portuguese-language, serving congregations across Mozambique.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The brief</h2>
+      <p>
+        A denomination this size runs on information that mostly lives in people's heads: which
+        assemblies exist in which district, who leads them, how to reach them, what's happening this
+        month, who has applied to serve, who has asked for prayer or called the helpline.
+      </p>
+      <p>
+        The organisation needed <strong>one system</strong> that members and the public could use, and
+        that administrators could actually run — in Portuguese, from Mozambique, on connections and
+        devices that are not a fibre line and a new laptop.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+
+      <h3>Public and member-facing</h3>
+      <div class="features">
+        <div class="feature">
+          <h4>Congregation directory</h4>
+          <p>Districts and assemblies with leaders, contacts and coordinates, searchable and plotted on an interactive Leaflet map so someone can find the nearest congregation.</p>
+        </div>
+        <div class="feature">
+          <h4>Shop &amp; orders</h4>
+          <p>Product listings, cart, checkout and order history — a full commerce path inside the same platform rather than bolted on elsewhere.</p>
+        </div>
+        <div class="feature">
+          <h4>Accounts with OTP</h4>
+          <p>Registration, login, one-time-password verification and password recovery, built for people whose most reliable channel is a phone number.</p>
+        </div>
+        <div class="feature">
+          <h4>Careers &amp; offers</h4>
+          <p>Applications for roles, reviewed and progressed by administrators through to a formal offer, all tracked in-platform.</p>
+        </div>
+        <div class="feature">
+          <h4>Prayer &amp; helpline</h4>
+          <p>Confidential prayer requests and helpline contacts routed to the right people, with the sensitivity that implies about who can read what.</p>
+        </div>
+        <div class="feature">
+          <h4>Updates, FAQ, media</h4>
+          <p>News and announcements with individual pages, a maintained FAQ, and a media library — all editable without a deploy.</p>
+        </div>
+      </div>
+
+      <h3>The admin console</h3>
+      <p>
+        Fifteen or so areas covering the whole operation: users, candidates, messages, live chat,
+        prayers, helpline, updates, FAQ, decisions, media and media approval, analytics, activity logs,
+        history, API health and site configuration. The console is the actual product — the public site
+        is what it renders.
+      </p>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          A media <em>approval</em> queue rather than direct publishing. When contributors across many
+          assemblies can upload, the question stops being "can they publish?" and becomes "who signed
+          off on this appearing under the denomination's name?"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <p>
+        Four containers on one modest VPS, orchestrated with Docker Compose. The database and
+        application server are never exposed to the internet; nginx terminates TLS and everything else
+        talks over the internal network.
+      </p>
+      <div class="arch">
+<pre>            Internet
+               │  443 / 80
+               ▼
+        <b>nginx</b>  TLS termination · static &amp; media volumes
+               │           ▲
+               │           └── <b>certbot</b>  Let's Encrypt renewal
+       ┌───────┴────────┐
+       ▼                ▼
+  <b>frontend</b>          <b>backend</b>
+  Next.js           Django + DRF
+  :3000 (internal)  gunicorn :8000 (internal)
+       │                │
+       │                ▼
+       │           <b>PostgreSQL 15</b>  bound to 127.0.0.1 only
+       │
+       └── internal-api/proxy   server-side fetch, domain allowlist
+
+  <b>Django apps</b>  accounts · churchdata · shop · updates · content
+                 prayers · helpline · chat · contact · faq · media
+                 media_approval · analytics · activity_logs · history</pre>
+      </div>
+
+      <h3>The proxy layer</h3>
+      <p>
+        The browser never calls the API directly. Requests go to Next.js server routes which attach
+        credentials server-side and forward on — and the proxy validates the target against an explicit
+        domain allowlist before it will fetch anything, so a crafted <code class="mono">url</code>
+        parameter can't turn the server into an open relay. That same layer is what lets the platform
+        pull from the denomination's separate finance system without ever putting its token in a
+        browser.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Running a real stack on a small box</h3>
+      <p>
+        Both application containers carry explicit CPU and memory limits — half a core each, 512MB for
+        Django, 1GB for Next.js — and the server needed a swap file provisioned before Next.js would
+        build on it at all. Deploying to a constrained VPS is an exercise in knowing exactly what each
+        process costs, which a managed platform lets you never learn.
+      </p>
+
+      <h3>Certificates that renew themselves</h3>
+      <p>
+        Certbot runs alongside nginx sharing the challenge and certificate volumes, so TLS renews
+        without anyone remembering to do it. On a self-hosted stack an expired certificate is a total
+        outage, and it happens on the day nobody is watching.
+      </p>
+
+      <h3>A deploy you can trust at speed</h3>
+      <p>
+        One scripted path: commit, push, pull on the server, rebuild the affected containers, run
+        migrations, collect static, restart. Scripting it is what makes a fix at 11pm safe, because the
+        risky step is never the code — it's the half-remembered command sequence.
+      </p>
+
+      <h3>Portuguese first</h3>
+      <p>
+        The platform is built for Mozambican users in Portuguese, not translated into it afterwards.
+        That shapes content models, form labels and the admin console equally — an English-first system
+        with a language toggle would have leaked English into exactly the places administrators live.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span><span class="tag">Radix UI</span><span class="tag">Leaflet</span>
+        <span class="tag">Recharts</span><span class="tag">Django</span><span class="tag">DRF</span>
+        <span class="tag">Python</span><span class="tag">PostgreSQL 15</span><span class="tag">gunicorn</span>
+        <span class="tag">Docker Compose</span><span class="tag">nginx</span><span class="tag">Certbot</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="dookie-deluxe.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Dookie Deluxe
+      </a>
+      <a href="be-africa.html">
+        Next: BE Africa
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dookie Deluxe — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A cross-platform digestive-health tracker built in Expo and React Native on Supabase — daily logging, a regularity score, symptom checking with red-flag grading, and doctor-ready reports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Mobile &amp; health data</div>
+      <h1 class="reveal">Dookie Deluxe</h1>
+      <p class="tagline reveal">
+        A digestive-health tracker that turns a taboo daily habit into data people actually look at.
+        Playful enough to open every morning, careful enough to hand a printout to a doctor.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Product &amp; full-stack</dd></div>
+        <div><dt>Built with</dt><dd>Expo · React Native</dd></div>
+        <div><dt>Backend</dt><dd>Supabase</dd></div>
+        <div><dt>Status</dt><dd>Cross-platform MVP</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Site:</span>
+        <a href="https://dookiedeluxe.com/" target="_blank" rel="noopener">dookiedeluxe.com</a>
+        <span>— a Godji Tech product. The app runs on iOS and Android.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p>
+        Digestive conditions are extremely common and badly tracked. People living with IBS, Crohn's,
+        colitis, coeliac disease or chronic constipation are routinely asked by a clinician to describe
+        months of symptoms from memory — and so they end up keeping notes in a phone, a spreadsheet, or
+        nowhere at all.
+      </p>
+      <p>
+        The data that would actually help is daily, boring, and slightly embarrassing to record. So the
+        design problem isn't storage or analysis. It's <strong>getting someone to log honestly, every
+        day, for months</strong> — and then turning that into something a GP can read in thirty seconds.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Two-speed logging</h4>
+          <p>A one-tap quick log for the habit, and a full entry — Bristol scale, colour, difficulty, mood, notes — for anyone who wants the detail. The fast path is never gated.</p>
+        </div>
+        <div class="feature">
+          <h4>Gut Regularity Score</h4>
+          <p>A 0–100 score from regularity, consistency, hydration and recent symptoms, returned with a per-factor breakdown of points earned, points available and a specific tip.</p>
+        </div>
+        <div class="feature">
+          <h4>Symptom checker</h4>
+          <p>A question set graded into informational, see-a-GP and urgent, with red-flag logic covering blood, black stools, unexplained weight loss, persistent change in habit and night-time symptoms.</p>
+        </div>
+        <div class="feature">
+          <h4>Calendar, timeline, analytics</h4>
+          <p>A heatmap calendar, a chronological timeline, and trend analysis relating food, medication and symptoms to what actually happened.</p>
+        </div>
+        <div class="feature">
+          <h4>Doctor-ready report</h4>
+          <p>Generated on device and exportable, so a consultation starts from a record instead of "a few weeks, I think, maybe more".</p>
+        </div>
+        <div class="feature">
+          <h4>Social layer</h4>
+          <p>Streak leaderboards, a shareable year-in-review, and a shared calendar for a partner or GP — the loop that makes a daily habit stick and spreads the app without ads.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Getting the language right</h2>
+      <p>
+        This is the part of the project I'd defend hardest, and none of it is visible in a screenshot.
+        A product that sits near health information can hurt people in two directions — by frightening
+        someone who is fine, or by reassuring someone who should see a doctor.
+      </p>
+      <div class="callout">
+        <span class="k">The rename</span>
+        <p>
+          The score started life as a <em>Gut Health Score</em> and became the <strong>Gut Regularity
+          Score</strong>. It measures regularity, not health. The narrower claim is the more honest one
+          — and it also happens to be the one that survives app-store review.
+        </p>
+      </div>
+      <p>
+        The wording rules are enforced as product requirements, not style preferences:
+      </p>
+      <ul>
+        <li>Medication effects say <strong>"may cause"</strong>, never "often causes".</li>
+        <li>Risk messaging says <em>"we've noticed a change in your recent logs that may be worth discussing with a healthcare professional"</em> — never "you have".</li>
+        <li>The checker reports only the flags the user actually raised, and invents nothing.</li>
+        <li>Every educational article carries an explicit educational-only disclaimer.</li>
+      </ul>
+      <p>
+        Dookie Deluxe is a <strong>personal wellness product, not a medical device</strong>. It doesn't
+        diagnose. Deciding that early, and writing the constraint into the copy rules rather than into a
+        disclaimer nobody reads, is what keeps it defensible with users and reviewers alike.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <div class="arch">
+<pre>  <b>Expo / React Native</b>   one codebase → iOS + Android
+    ├── expo-router          file-based routing, tab + auth groups
+    ├── NativeWind           Tailwind syntax in React Native
+    ├── TanStack Query       server cache, offline-tolerant reads
+    └── Reanimated           gesture and transition work
+
+  <b>Device capabilities</b>
+    ├── expo-notifications      daily logging reminders
+    ├── expo-local-authentication   biometric lock on health data
+    ├── expo-image-picker       photo attachments
+    ├── expo-print / sharing    doctor-ready PDF export
+    └── expo-secure-store       tokens in the keychain, not storage
+
+  <b>Supabase</b>   Postgres · auth · row-level security · storage
+    └── social sign-in incl. Apple, via expo-auth-session
+
+  <b>EAS</b>   build profiles → development · preview · production
+    └── expo-updates  OTA JS delivery on channel per profile</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          Health data gets a biometric lock and lives behind row-level security, and tokens go to the
+          secure enclave rather than async storage. A bowel-movement log is the kind of thing people
+          will only record honestly if they are certain nobody else will read it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Shipping to testers in other countries</h3>
+      <p>
+        Early distribution ran through a local tunnel, which failed exactly as often as remote testers
+        tried to use it. Moving to EAS with an organisation account fixed it: three build profiles on
+        their own channels, standalone builds that check for updates on launch, and a JS-only change
+        reaching every tester without a reinstall.
+      </p>
+
+      <h3>Knowing when OTA isn't enough</h3>
+      <p>
+        Over-the-air updates cover screens, logic, styling and new content. Native libraries, icon and
+        splash changes, SDK upgrades and native config still need a rebuild. Getting that boundary
+        wrong means publishing an update that silently does nothing — so the rule is written down
+        rather than remembered.
+      </p>
+
+      <h3>Free tier as a growth mechanism</h3>
+      <p>
+        The monetisation model paywalls depth, health reporting and convenience — never the core
+        logging loop or the sharing hook. A tracker that limits how often you can log destroys the
+        habit it depends on, and a viral feature behind a paywall isn't viral.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Expo</span><span class="tag">React Native</span><span class="tag">TypeScript</span>
+        <span class="tag">expo-router</span><span class="tag">NativeWind</span><span class="tag">TanStack Query</span>
+        <span class="tag">Reanimated</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span>
+        <span class="tag">EAS Build</span><span class="tag">EAS Update</span>
+        <span class="tag">iOS</span><span class="tag">Android</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="../index.html#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+      <a href="ada.html">
+        Next: Ada
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>
