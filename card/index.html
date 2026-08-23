@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matthew Gift Luis — Digital Business Card</title>
+<meta name="description" content="Full-stack developer · Founder at Godji Tech (PTY) Ltd. Save my contact, or reach me on WhatsApp or email.">
+<meta name="theme-color" content="#08090c">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Matthew Gift Luis — Full-Stack Developer">
+<meta property="og:description" content="Web platforms, e-commerce, mobile apps and business automation. Front end to infrastructure.">
+<meta property="og:url" content="https://webdevmatt-dot.github.io/portfolio/card/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08090c; --surface:#101318; --surface-2:#151922;
+    --line:#1e2430; --line-2:#2a3242;
+    --text:#e6e9ef; --muted:#8b95a7; --dim:#5d6675;
+    --accent:#4ade80; --accent-2:#38bdf8; --accent-3:#a78bfa;
+    --wa:#25D366; --li:#0A66C2;
+    --glow:rgba(74,222,128,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    min-height:100dvh;display:flex;align-items:center;justify-content:center;
+    padding:24px 16px calc(24px + env(safe-area-inset-bottom));
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  .glow{position:fixed;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+  .g1{width:420px;height:420px;top:-160px;left:-120px;background:rgba(56,189,248,.16)}
+  .g2{width:380px;height:380px;bottom:-140px;right:-120px;background:rgba(74,222,128,.13)}
+
+  .card{
+    position:relative;z-index:1;width:100%;max-width:420px;
+    background:linear-gradient(165deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line);border-radius:22px;
+    padding:34px 26px 26px;overflow:hidden;
+    box-shadow:0 24px 70px rgba(0,0,0,.55);
+  }
+  .card::before{
+    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:70%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  }
+
+  .top{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .mono-badge{
+    width:62px;height:62px;flex:none;border-radius:18px;
+    background:linear-gradient(140deg,var(--accent),var(--accent-2) 60%,var(--accent-3));
+    color:#04150a;display:grid;place-items:center;
+    font-size:22px;font-weight:800;letter-spacing:-.04em;
+    box-shadow:0 8px 28px var(--glow);
+  }
+  .who h1{font-size:1.42rem;font-weight:800;letter-spacing:-.03em;line-height:1.15}
+  .who .role{font-size:13.5px;color:var(--accent);font-weight:600;margin-top:2px}
+  .who .org{font-size:12.5px;color:var(--dim);margin-top:1px}
+
+  .bio{
+    font-size:14px;color:var(--muted);
+    padding:14px 0 18px;border-top:1px solid var(--line);
+  }
+
+  .actions{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+  .btn{
+    display:flex;align-items:center;gap:12px;
+    padding:13px 16px;border-radius:12px;font-size:14.5px;font-weight:600;
+    border:1px solid var(--line-2);background:rgba(255,255,255,.02);
+    transition:transform .16s ease,border-color .16s ease,background .16s ease;
+  }
+  .btn:active{transform:scale(.985)}
+  @media(hover:hover){.btn:hover{border-color:var(--dim);background:rgba(255,255,255,.05)}}
+  .btn svg{width:18px;height:18px;flex:none}
+  .btn .sub{margin-left:auto;font-size:12px;font-weight:500;color:var(--dim)}
+  .btn-save{
+    background:var(--accent);color:#04150a;border-color:transparent;
+    box-shadow:0 6px 26px var(--glow);
+  }
+  .btn-save .sub{color:rgba(4,21,10,.6)}
+  @media(hover:hover){.btn-save:hover{background:#5ee893;border-color:transparent}}
+  .btn-wa{border-color:rgba(37,211,102,.35)}
+  .btn-wa svg{color:var(--wa)}
+  .btn-li svg{color:#4da3ff}
+
+  .qr-wrap{
+    border-top:1px solid var(--line);padding-top:20px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .qr{
+    width:104px;height:104px;flex:none;border-radius:12px;
+    background:#fff;padding:7px;
+  }
+  .qr img{width:100%;height:100%;display:block}
+  .qr-text .t{font-size:13px;font-weight:600;margin-bottom:3px}
+  .qr-text .d{font-size:12px;color:var(--dim);line-height:1.5}
+
+  footer{
+    margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:11.5px;color:var(--dim);text-align:center;letter-spacing:.02em;
+  }
+  footer a{color:var(--muted)}
+  @media(hover:hover){footer a:hover{color:var(--accent)}}
+
+  @media(max-width:380px){
+    .card{padding:28px 20px 22px}
+    .mono-badge{width:54px;height:54px;font-size:19px;border-radius:15px}
+    .who h1{font-size:1.28rem}
+    .qr-wrap{flex-direction:column;text-align:center;gap:12px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+
+<main class="card">
+  <div class="top">
+    <div class="mono-badge">ML</div>
+    <div class="who">
+      <h1>Matthew Gift Luis</h1>
+      <div class="role">Full-Stack Developer</div>
+      <div class="org">Founder · Godji Tech (PTY) Ltd</div>
+    </div>
+  </div>
+
+  <p class="bio">
+    Web platforms, e-commerce, mobile apps and the automation that holds a business together.
+    Front end to infrastructure.
+  </p>
+
+  <div class="actions">
+    <a class="btn btn-save" href="matthew-gift-luis.vcf" download="matthew-gift-luis.vcf">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+      Save to contacts
+      <span class="sub">vCard</span>
+    </a>
+
+    <a class="btn btn-wa" href="https://wa.me/258847010340" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.18 8.18 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.69 8.21-8.24 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.04s.87 2.37.99 2.53c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+      WhatsApp
+      <span class="sub mono">+258 84 701 0340</span>
+    </a>
+
+    <a class="btn btn-wa" href="https://wa.me/27716134107" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.02a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.18 8.18 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.69 8.21-8.24 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.84-.85 2.04s.87 2.37.99 2.53c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+      WhatsApp
+      <span class="sub mono">+27 71 613 4107</span>
+    </a>
+
+    <a class="btn" href="mailto:mgluis530@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      Email
+      <span class="sub">mgluis530@gmail.com</span>
+    </a>
+
+    <a class="btn btn-li" href="https://www.linkedin.com/in/matthew-gift-luis-199505210/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.03-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21h-4V9Z"/></svg>
+      LinkedIn
+      <span class="sub">Connect</span>
+    </a>
+
+    <a class="btn" href="../index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"/></svg>
+      Portfolio
+      <span class="sub">Case studies</span>
+    </a>
+
+    <a class="btn" href="https://godjitech.com" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+      Godji Tech
+      <span class="sub">Software · AI · Automation</span>
+    </a>
+  </div>
+
+  <div class="qr-wrap">
+    <div class="qr"><img src="qr.svg" alt="QR code linking to this card" width="104" height="104"></div>
+    <div class="qr-text">
+      <div class="t">Share this card</div>
+      <div class="d">Point a camera here to open it — no app, no typing.</div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis</span> ·
+    <a href="../index.html">webdevmatt-dot.github.io/portfolio</a>
+  </footer>
+</main>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>

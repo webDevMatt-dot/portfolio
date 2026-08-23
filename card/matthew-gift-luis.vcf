@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Luis;Matthew Gift;;;
+FN:Matthew Gift Luis
+TITLE:Full-Stack Developer
+ORG:Godji Tech (PTY) Ltd
+EMAIL;TYPE=INTERNET,PREF:mgluis530@gmail.com
+TEL;TYPE=CELL,VOICE:+258847010340
+TEL;TYPE=CELL,VOICE:+27716134107
+URL:https://webdevmatt-dot.github.io/portfolio
+URL:https://www.linkedin.com/in/matthew-gift-luis-199505210/
+NOTE:Web platforms, e-commerce, mobile apps and business automation. Front end to infrastructure.
+END:VCARD
