@@ -32,7 +32,7 @@
       <div class="eyebrow reveal">Case study · Platform &amp; infrastructure</div>
       <h1 class="reveal">Ada</h1>
       <p class="tagline reveal">
-        Not a church website. A digital platform for a national denomination in Mozambique — thousands
+        Not <strong>just</strong> a church website. A digital platform for a national denomination in Mozambique — thousands
         of assemblies across districts, a shop, recruitment, pastoral care and a full admin console,
         running on infrastructure I provisioned and maintain.
       </p>
@@ -46,7 +46,7 @@
       <p class="live-note reveal">
         <span>Live site:</span>
         <a href="https://ada.org.mz/" target="_blank" rel="noopener">ada.org.mz</a>
-        <span>— Portuguese-language, serving congregations across Mozambique.</span>
+        <span>— fully bilingual Portuguese and English, serving congregations across Mozambique.</span>
       </p>
     </div>
   </section>
@@ -61,7 +61,7 @@
       </p>
       <p>
         The organisation needed <strong>one system</strong> that members and the public could use, and
-        that administrators could actually run — in Portuguese, from Mozambique, on connections and
+        that administrators could actually run — fully bilingual in Portuguese and English, on connections and
         devices that are not a fibre line and a new laptop.
       </p>
     </div>
@@ -186,11 +186,17 @@
         risky step is never the code — it's the half-remembered command sequence.
       </p>
 
-      <h3>Portuguese first</h3>
+      <h3>Bilingual, not translated</h3>
       <p>
-        The platform is built for Mozambican users in Portuguese, not translated into it afterwards.
-        That shapes content models, form labels and the admin console equally — an English-first system
-        with a language toggle would have leaked English into exactly the places administrators live.
+        The platform runs fully in Portuguese and English — over a thousand translated strings
+        behind a language switcher, covering the public site and the admin console alike.
+      </p>
+      <p>
+        Retrofitting a second language is where most projects come unstuck: strings end up
+        hardcoded in components, and the half nobody translated is always the half administrators
+        use daily. Building the translation layer in from the start made the switch total rather
+        than cosmetic — which matters for a denomination whose reach spans Lusophone Mozambique
+        and English-speaking partners abroad.
       </p>
     </div>
   </section>
