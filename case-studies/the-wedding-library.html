@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wedding Library — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A wedding-planning platform — Next.js website and Expo iPhone app on one Supabase backend — covering guests and RSVPs, designed email invitations, a shared photo album, live programme, gift registry, door check-in and a vendor marketplace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Web, mobile &amp; marketplace</div>
+      <h1 class="reveal">The Wedding Library</h1>
+      <p class="tagline reveal">
+        Plan it. Find it. Fund it. Remember it. One platform for the whole wedding — the couple's
+        planning, the guests' invitations and photos, the people at the door, and the vendors who make
+        the day happen.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Product, design &amp; full-stack</dd></div>
+        <div><dt>Web</dt><dd>Next.js 16 · React 19</dd></div>
+        <div><dt>App</dt><dd>Expo · React Native</dd></div>
+        <div><dt>Backend</dt><dd>Supabase · Postgres</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live:</span>
+        <a href="https://weddings.godjitech.com/" target="_blank" rel="noopener">weddings.godjitech.com</a>
+        <span>· <a href="https://apps.apple.com/app/id6811011359" target="_blank" rel="noopener">App Store</a> — a Godji Tech product. Android coming to Google Play.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p>
+        A wedding is planned across a dozen tools that don't talk to each other: a spreadsheet for the
+        guest list, WhatsApp for invitations, a separate site for the registry, a shared album nobody
+        finds, and vendors juggled over email. The couple ends up as the integration layer.
+      </p>
+      <p>
+        And the weddings this was built for aren't one event. A Southern African wedding is often a
+        traditional ceremony <em>and</em> a white wedding, with lobola or roora negotiations, family
+        outfits ordered in bulk, households invited as one, and guests who arrive with a phone rather
+        than a printed card. The goal was <strong>one place that handles all of it, in the couple's own
+        words</strong> — and that guests can use without creating an account.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Guests &amp; RSVPs</h4>
+          <p>Households as one entry, bulk import with duplicate detection, per-guest invitation links, and name matching that finds "Admire And Wife Musonza" from either name — with a "which one is yours?" chooser when several match.</p>
+        </div>
+        <div class="feature">
+          <h4>Designed invitations</h4>
+          <p>Five templates, the couple's own first-person wording, a drawn signature from each partner's own account, and a live preview of the exact email that gets sent — in light and dark mode.</p>
+        </div>
+        <div class="feature">
+          <h4>Shared album</h4>
+          <p>Guests join with a wedding code, shoot or upload photos and short videos, and everything is grouped by the run of the day. Photos are resized on the phone before they touch venue wifi.</p>
+        </div>
+        <div class="feature">
+          <h4>Live on the day</h4>
+          <p>The programme highlights what's on now and what's next in the venue's time zone, with a dark "day board" for the top table and local reminders that work without signal.</p>
+        </div>
+        <div class="feature">
+          <h4>Door &amp; check-in</h4>
+          <p>Invite-only weddings get a door team with personal codes, QR entry passes for every guest, scan-or-search check-in, and a live count for the couple.</p>
+        </div>
+        <div class="feature">
+          <h4>Traditions, budget &amp; vendors</h4>
+          <p>Lobola and outfit planning in each tradition's own vocabulary, a budget, a registry with pledges, and a vendor marketplace with enquiries, itemised quotes, bookings and payment schedules.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/twl-invitation-email.jpg" alt="The invitation email on a laptop and a phone: names over a rings photo, three-column details, a wine button, the wedding code and an app strip" loading="lazy" width="1021" height="1386"></div>
+          <figcaption>The invitation email, rendered from the couple's design — laptop and phone.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/twl-banner-names.jpg" alt="Invitation banner with 'You're invited, Matthew &amp; Chikomborero' set beside wedding rings" loading="lazy" width="1200" height="600"></div>
+          <figcaption>The banner is generated per couple as one image, so Gmail's dark mode can't recolour the names.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <div class="arch">
+<pre>  <b>Next.js 16 · App Router</b>   weddings.godjitech.com on Netlify
+    ├── server actions        every write, with plain-English errors
+    ├── couple workspace       guests, seating, door, budget, traditions…
+    ├── guest pages            /i/&lt;token&gt; invitation + RSVP, /w/&lt;slug&gt; site
+    ├── vendor console         profile, packages, enquiries, quotes, bookings
+    └── next/og                per-couple invitation banners as PNG
+
+  <b>Expo · React Native</b>   one codebase → iOS (live) + Android
+    ├── expo-router            couple · guest · door · vendor stacks
+    ├── expo-camera / video    album capture, QR entry scanning
+    ├── expo-notifications     on-the-day reminders, push
+    └── EAS Build + Update     store builds and over-the-air fixes
+
+  <b>Supabase</b>   Postgres · auth · row-level security · storage
+    ├── 50+ migrations         roles, permissions, security-definer RPCs
+    ├── Google + Apple sign-in, branded auth emails over custom SMTP
+    └── guest &amp; door access   bearer tokens, never full accounts</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          Guests and door staff never get accounts. A guest's invitation link and a door member's code
+          are bearer tokens checked inside security-definer functions, so a wedding with three hundred
+          guests doesn't need three hundred sign-ups — and a leaked link can only ever reach its own
+          wedding.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Permissions people can see</h3>
+      <p>
+        Couples invite planners and family with different powers — co-owner, editor with switches for
+        money, vendors and announcements, or view-only. The database enforced all of it from the start;
+        the work was making the screens agree, so a helper sees a disabled button with a reason instead
+        of clicking and watching nothing happen.
+      </p>
+
+      <h3>Email is not a browser</h3>
+      <p>
+        The invitation had to look like a printed card in Apple Mail, Gmail on the web and Gmail's dark
+        mode on a phone — which ignores media queries, drops background images and recolours text. The
+        answer was tables, fluid blocks that stack without CSS, and generating the one piece of text over
+        a photo as an image on the server.
+      </p>
+
+      <h3>Time is the venue's time</h3>
+      <p>
+        "What's on now" is computed in the wedding's time zone, not the phone's, so the guest who flew in
+        and the cousin down the road see the same programme. Dates render with a fixed locale on the
+        server and in the browser to avoid hydration mismatches.
+      </p>
+
+      <h3>Shipping two platforms from one backend</h3>
+      <p>
+        Website and app share every rule through the database rather than duplicating it in two
+        codebases. The app ships JS-only fixes over the air; a release script checks native config and
+        refuses an OTA that would need a new binary.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span><span class="tag">Expo</span><span class="tag">React Native</span>
+        <span class="tag">expo-router</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Row-level security</span><span class="tag">EAS Build</span><span class="tag">EAS Update</span>
+        <span class="tag">Netlify</span><span class="tag">Playwright</span><span class="tag">GitHub Actions</span>
+        <span class="tag">iOS</span><span class="tag">Android</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="../index.html#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+      <a href="dookie-deluxe.html">
+        Next: Dookie Deluxe
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>
