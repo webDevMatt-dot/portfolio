@@ -168,3 +168,41 @@ footer{border-top:1px solid var(--line);padding:26px 0;position:relative;z-index
   .reveal{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
 }
+
+/* ---------- lightbox ---------- */
+.shot.filled{cursor:zoom-in}
+.shot.filled:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lb{
+  position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;
+  background:rgba(4,5,8,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s;
+}
+.lb.open{opacity:1;visibility:visible}
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;flex:none}
+.lb-count{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--muted);letter-spacing:.06em}
+.lb-tools{display:flex;gap:8px}
+.lb-btn{
+  appearance:none;border:1px solid var(--line-2);background:var(--surface);color:var(--text);
+  width:40px;height:40px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .18s,background .18s;
+}
+.lb-btn:hover{border-color:var(--muted);background:var(--surface-2)}
+.lb-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.lb-btn svg{width:18px;height:18px}
+.lb-stage{flex:1;min-height:0;overflow:auto;display:flex;align-items:center;justify-content:center;padding:0 64px;overscroll-behavior:contain}
+.lb-stage img{
+  max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;
+  border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);cursor:zoom-in;user-select:none;
+}
+.lb.zoomed .lb-stage{align-items:flex-start}
+.lb.zoomed .lb-stage img{max-width:none;max-height:none;cursor:zoom-out;margin:auto}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2}
+.lb-prev{left:14px}.lb-next{right:14px}
+.lb-cap{flex:none;padding:14px 20px 20px;text-align:center;font-size:13.5px;color:var(--muted);max-width:760px;margin:0 auto;line-height:1.5}
+.lb.single .lb-nav{display:none}
+@media(max-width:640px){
+  .lb-stage{padding:0 10px}
+  .lb-nav{top:auto;bottom:14px;transform:none}
+  .lb-cap{padding:14px 62px 22px;min-height:68px;display:flex;align-items:center;justify-content:center}
+}
+body.lb-lock{overflow:hidden}

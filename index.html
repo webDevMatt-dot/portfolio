@@ -156,6 +156,7 @@
   }
   .proj:hover{border-color:var(--line-2);transform:translateY(-3px);background:var(--surface-2)}
   .proj:hover::after{opacity:1}
+  .proj.has-study{cursor:pointer}
   .proj.featured{grid-column:span 2}
   @media(max-width:820px){.proj.featured{grid-column:span 1}}
   .proj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
@@ -421,7 +422,7 @@
             <span class="proj-idx mono">04</span>
             <span class="proj-type">Digital platform</span>
           </div>
-          <h3>Ada — Church Digital Platform</h3>
+          <h3>ADA — Church Digital Platform</h3>
           <div class="proj-links">
             <a class="proj-link study" href="case-studies/ada.html">
               Read case study
@@ -751,6 +752,27 @@
       var r = card.getBoundingClientRect();
       card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
       card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+    });
+  });
+
+  // Cards with a case study open it when clicked anywhere on the card.
+  // Real links inside (live site, the case study link itself) keep working,
+  // and selecting text doesn't count as a click. Ctrl/Cmd/middle-click open a new tab.
+  document.querySelectorAll('.proj').forEach(function(card){
+    var study = card.querySelector('a.proj-link.study');
+    if(!study) return;
+    card.classList.add('has-study');
+    function go(newTab){
+      if(newTab) window.open(study.href, '_blank', 'noopener');
+      else location.href = study.href;
+    }
+    card.addEventListener('click', function(e){
+      if(e.target.closest('a')) return;
+      if(window.getSelection && String(window.getSelection())) return;
+      go(e.metaKey || e.ctrlKey);
+    });
+    card.addEventListener('auxclick', function(e){
+      if(e.button === 1 && !e.target.closest('a')) go(true);
     });
   });
 </script>
