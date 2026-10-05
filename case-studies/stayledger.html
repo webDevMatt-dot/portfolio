@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StayLedger — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A property handover, inventory and guest-experience platform for short-term rentals — a link-and-OTP guest portal, an owner dashboard and an Expo owner app on one Supabase backend.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Short-term rentals · Web &amp; mobile</div>
+      <h1 class="reveal">StayLedger</h1>
+      <p class="tagline reveal">
+        A shared record of your property, every stay. Guests check in, walk the inventory, flag
+        problems with photos and check out — all from a link. Owners get a timestamped timeline of
+        what was in the property, what changed and who said so.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Product, design &amp; full-stack</dd></div>
+        <div><dt>Web</dt><dd>Next.js 16 · React 19</dd></div>
+        <div><dt>App</dt><dd>Expo · React Native</dd></div>
+        <div><dt>Backend</dt><dd>Supabase · Postgres</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live:</span>
+        <a href="https://stayledger.godjitech.com/" target="_blank" rel="noopener">stayledger.godjitech.com</a>
+        <span>· a Godji Tech product.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p>
+        Most Airbnb-style disputes come down to one question nobody can answer: was it like that when
+        the guest arrived? Handover happens over WhatsApp, the inventory lives in the owner's head, and
+        damage is noticed by the cleaner two days after check-out — when it's one person's word against
+        another's.
+      </p>
+      <p>
+        The goal was <strong>a record both sides add to and neither side can quietly rewrite</strong> —
+        and a guest flow light enough that people actually use it: no app to download, no account to
+        create, just a link from the host.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Guest portal, no account</h4>
+          <p>A link and an access code, then a one-time code to the email or phone on the booking. Wi-Fi, arrival instructions, the door code pinned and copyable, a guidebook, host and emergency contacts.</p>
+        </div>
+        <div class="feature">
+          <h4>Guided check-in &amp; check-out</h4>
+          <p>Item-by-item walkthrough of the inventory with photos and notes on anything flagged, house rules acknowledged and timestamped, and a "before you leave" checklist with a signed declaration.</p>
+        </div>
+        <div class="feature">
+          <h4>Inventory reconciliation</h4>
+          <p>Areas and items with expected quantities, then expected vs counted at arrival vs counted at departure — so a missing towel is a line on a report, not an argument.</p>
+        </div>
+        <div class="feature">
+          <h4>Issues during the stay</h4>
+          <p>Guests can report a problem at any point, not just at the ends. Owners work it through a status workflow and their responses show up on the guest's side.</p>
+        </div>
+        <div class="feature">
+          <h4>Owner dashboard &amp; app</h4>
+          <p>Properties with a status workflow, stays with generated access codes, check-in and check-out reports, structured reviews with per-category averages, and an Expo app for iOS and Android with native push.</p>
+        </div>
+        <div class="feature">
+          <h4>An audit trail that holds</h4>
+          <p>Every property has an append-only timeline, enforced by a database trigger rather than convention, plus alerts on check-in, new issues, check-out and reviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Guest check-in walkthrough</span><span>screenshot to add</span></div>
+          <figcaption>The guest walks the inventory item by item and flags anything off with a photo.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Inventory reconciliation</span><span>screenshot to add</span></div>
+          <figcaption>Expected, counted at arrival, counted at departure — side by side.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Owner dashboard</span><span>screenshot to add</span></div>
+          <figcaption>Properties, active stays and open issues for the owner.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot"><span class="lbl">Property timeline</span><span>screenshot to add</span></div>
+          <figcaption>The append-only record of every stay.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <div class="arch">
+<pre>  <b>Next.js 16 · App Router</b>   stayledger.godjitech.com on Netlify
+    ├── /stay/[code]           guest portal — OTP, check-in, report, check-out, review
+    ├── /dashboard             owner — properties, stays, inventory, issues, reviews
+    ├── /admin                 platform admin, cross-tenant
+    ├── server actions         every write, validated with zod
+    └── web-push               installable PWA with push for owners
+
+  <b>Expo · React Native</b>   owner app → iOS + Android
+    ├── expo-router            properties · stays · issues · reviews
+    ├── expo-image-picker      property and inventory photos
+    └── expo-notifications     native push via Expo → APNs / FCM
+
+  <b>Supabase</b>   Postgres · auth · row-level security · storage
+    ├── RLS on every table     owners scoped by the database, not the app
+    ├── audit_events           append-only, enforced by trigger
+    ├── private media bucket   images only through short-lived signed URLs
+    └── Google + Apple sign-in for owners</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          Two auth models on purpose. Owners sign in through Supabase Auth and every query carries
+          their session, so Postgres row-level security does the scoping — an owner can't read another
+          owner's rows even if the app code has a bug. Guests never get an account: they get a signed,
+          revocable session cookie scoped to one stay, and every guest query goes through a single
+          data-access module that filters by the stay the session proves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>An access code isn't enough</h3>
+      <p>
+        Access codes get forwarded. So the code only gets a guest to the door of the flow — they then
+        have to hold the email or phone the owner recorded on the booking. One-time codes are hashed
+        with a pepper, expire in ten minutes, allow five attempts and are invalidated when a new one is
+        issued. Wi-Fi passwords and the door code never reach a guest who hasn't passed that check.
+      </p>
+
+      <h3>A record neither side can edit</h3>
+      <p>
+        The timeline is only worth anything if it can't be rewritten after a dispute starts. Updates and
+        deletes on the audit table raise an exception at the database level, so "append-only" is a
+        property of the schema, not a promise in the code.
+      </p>
+
+      <h3>Designed for a guest at a door in the dark</h3>
+      <p>
+        The key-safe code started life buried in a paragraph of arrival instructions. It became its own
+        field so it could be shown large, pinned to the screen and copied in one tap — the three things
+        someone with a suitcase and a dying phone actually needs.
+      </p>
+
+      <h3>Two owner surfaces, one source of truth</h3>
+      <p>
+        The Expo app talks to the same Supabase project with the same anon key and the same row-level
+        security as the web dashboard. There's no service-role key on the device and no bespoke API to
+        keep in sync — the database is the contract. Guests stay on the web, which is the whole point of
+        the link-and-OTP design.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Next.js 16</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span><span class="tag">zod</span><span class="tag">Expo</span>
+        <span class="tag">React Native</span><span class="tag">expo-router</span><span class="tag">Supabase</span>
+        <span class="tag">PostgreSQL</span><span class="tag">Row-level security</span><span class="tag">Web Push</span>
+        <span class="tag">PWA</span><span class="tag">Netlify</span><span class="tag">iOS</span><span class="tag">Android</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="../index.html#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+      <a href="ada.html">
+        Next: Ada
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js"></script>
+</body>
+</html>
