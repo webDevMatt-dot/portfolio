@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tally — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A personal money tracker that turns the transaction alerts your bank already emails you into budgets, pay-cycle views, balances and a safe-to-spend number. Static web app on Supabase with read-only Gmail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css?v=3">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Personal finance · Web app</div>
+      <h1 class="reveal">Tally</h1>
+      <p class="tagline reveal">
+        Know exactly where your money goes. Tally reads the transaction alerts your bank already
+        emails you and turns them into a live picture: what came in, what went out, where it went,
+        and how much is safe to spend today. No bank login, no spreadsheets, no typing.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Product, design &amp; full-stack</dd></div>
+        <div><dt>App</dt><dd>Single-file web app · PWA</dd></div>
+        <div><dt>Data</dt><dd>Gmail API (read-only)</dd></div>
+        <div><dt>Backend</dt><dd>Supabase · Postgres · Edge Functions</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live:</span>
+        <a href="https://tally.godjitech.com/" target="_blank" rel="noopener">tally.godjitech.com</a>
+        <span>· a Godji Tech product. Screens below use sample data.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p>
+        Banks in South Africa email an alert for almost every transaction: a card purchase, a debit
+        order, a payment, money in. That's a complete record of your spending, and it sits unread in
+        an inbox. Budgeting apps want your banking password or a screen-scraping integration; the
+        alternative is a spreadsheet you stop updating by the second week.
+      </p>
+      <p>
+        The goal was <strong>a money picture that keeps itself up to date from data you already have</strong>,
+        built around how people actually get paid: payday to payday, not the 1st to the 31st. It had to
+        answer the one question people open a money app for (<em>can I afford this?</em>) and it had
+        to run on its own, for anyone, without asking for a bank login.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Alerts in, transactions out</h4>
+          <p>Sign in with Google, pick the sender your bank's alerts come from, and Tally imports months of history in one go. A parser pulls the amount, merchant, card, account and available balance out of each alert, and keeps checking every few minutes while the app is open.</p>
+        </div>
+        <div class="feature">
+          <h4>Safe to spend today</h4>
+          <p>One number on the home screen: the real balance from your latest alert, minus fixed payments and savings still to come this pay cycle, divided by the days to payday. "How we worked this out" shows every line of the sum.</p>
+        </div>
+        <div class="feature">
+          <h4>Pay cycles, not months</h4>
+          <p>Tally finds your salary and counts from payday to payday everywhere: totals, charts, budgets and history. A payday plan ticks itself off as rent, savings and other fixed payments go out.</p>
+        </div>
+        <div class="feature">
+          <h4>Categories that learn</h4>
+          <p>Teach it a merchant once and every past and future transaction follows. A review queue holds anything new, with "just this one", "always" or "ask me each time", plus split payments, pass-through money and savings categories that don't count as spending.</p>
+        </div>
+        <div class="feature">
+          <h4>Money Tally didn't see</h4>
+          <p>Every alert carries a balance. Tally reconciles consecutive balances against everything in between and surfaces what moved with no email: bank fees, debit orders, or money moved between your own accounts, which it matches and offers to file as a transfer.</p>
+        </div>
+        <div class="feature">
+          <h4>While you're not looking</h4>
+          <p>Optional server-side import every 15 minutes, a Sunday-evening email summary and a heads-up on large payments, sent from the product's own domain. Offline mode, undo on every bulk change, global search and Excel export.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <p class="shots-sub">Getting in</p>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-signin.jpg" alt="Tally sign-in: 'Know exactly where your money goes' with Continue with Google, three privacy promises and a live preview of the app" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>Sign in on Tally's own domain. The promises up front are the ones people need before they share an inbox.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-home.jpg" alt="Overview: safe to spend R414 a day, payday plan all done, where your money went by category with budgets" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>Home: safe to spend today, the payday plan, and where the money went this pay cycle.</figcaption>
+        </figure>
+      </div>
+
+      <p class="shots-sub">Day to day</p>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-home-detailed.jpg" alt="Detailed overview with in, out and left-in-account tiles, account balances read from alerts and salary burn" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>The detailed view: balances read straight from alerts, and how fast the salary is going.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-activity.jpg" alt="Activity list grouped by day with categories, card numbers and a needs-review badge" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>Activity, grouped by day. Search understands "aug", "over 500" or "card 1234".</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-cards.jpg" alt="Cards page with a tile per card, spend per pay cycle chart and month-by-month list" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>Every card gets its own tile, chart and history.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-budgets.jpg" alt="Budgets with spend against each limit and a pay-cycle-by-pay-cycle table" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>Budgets per category, and six pay cycles side by side.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-savings.jpg" alt="Savings balance over time with month-by-month transfers and auto-transfer status" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>Savings: the balance over time and whether the auto-transfer actually went through.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-search.jpg" alt="Command-K search showing a top answer, matching category and transactions for 'groceries over 300'" loading="lazy" width="1600" height="1000"></div>
+          <figcaption>⌘K search answers the question first, then shows the matches.</figcaption>
+        </figure>
+      </div>
+
+      <p class="shots-sub">The reconciliation</p>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-gaps.jpg" alt="'Money Tally didn't see': an R69 bank fee with no alert, and a credit-card balance increase matched to a payment from the everyday account" loading="lazy" width="1068" height="972"></div>
+          <figcaption>A R69 fee with no email, and a card repayment matched to the payment that funded it.</figcaption>
+        </figure>
+      </div>
+
+      <p class="shots-sub">On the phone</p>
+      <div class="shots phone browser">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-m-home.jpg" alt="Phone home screen with safe to spend and the payday plan" loading="lazy" width="424" height="918"></div>
+          <figcaption>Home, with the pay cycle switcher.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-m-activity.jpg" alt="Phone activity list with filters" loading="lazy" width="424" height="918"></div>
+          <figcaption>Activity and filters.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-m-cards.jpg" alt="Phone cards page with swipeable card tiles and a chart" loading="lazy" width="424" height="918"></div>
+          <figcaption>Swipe between cards.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/tally-m-review.jpg" alt="Phone review queue: pick a category once for a new merchant" loading="lazy" width="424" height="918"></div>
+          <figcaption>The review queue: one tap teaches a merchant for good.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <div class="arch">
+<pre>  <b>Static web app</b>   tally.godjitech.com on Netlify · no build step
+    ├── index.html             UI, state, pay-cycle engine, reconciliation, search
+    ├── parser.js              alert parser, shared with the server, unit-tested
+    ├── Google Identity        sign-in on Tally's own domain (ID token → Supabase)
+    ├── Gmail API              read-only, queried by the one sender the user picks
+    └── sw.js                  offline shell + cached data, installable PWA
+
+  <b>Supabase</b>   Postgres · auth · row-level security
+    ├── profiles · txns        one row per user / transaction, RLS on every table
+    ├── gmail_tokens           refresh tokens, no client policies at all
+    └── notify                 email preferences
+
+  <b>Edge Functions (Deno)</b>   scheduled by pg_cron, key held in Vault
+    ├── gmail-connect          one-time code → refresh token, kept server-side
+    ├── import-alerts          every 15 min: new alerts for every connected user
+    └── weekly-summary         Sunday email + large-payment alerts over SMTP</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          No bank integration, on purpose. Bank-feed APIs mean handing over a banking login or paying an
+          aggregator, and neither works for a small product in South Africa. Bank alert emails are already
+          complete, timestamped and include the available balance, so Tally reads those instead, with the
+          narrowest Gmail access available, filtered to one sender, and stores only the extracted fields,
+          never the email body.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>A number people can trust</h3>
+      <p>
+        "Safe to spend" is only useful if it's right, and adding up transactions drifts: a missed alert,
+        a pending card hold or a transfer to savings and the figure is off. So when an alert carries a
+        balance, Tally starts from the bank's own number and only adjusts for what has happened since.
+        The maths sits under a "How we worked this out" toggle, so nobody has to take it on faith.
+      </p>
+
+      <h3>Reconciling balances, not just transactions</h3>
+      <p>
+        The first version compared each alert's balance only with the alert before it, and flagged
+        hundreds of false gaps, including the salary. The rewrite walks each account in time order and
+        sums everything in between: history rows, transfers, reversed purchases (out at purchase, back at
+        reversal), duplicate records counted once, and date-only items allowed to sit on either side of a
+        same-day alert. What's left is real, and money moved between your own accounts is matched to the
+        payment that funded it.
+      </p>
+
+      <h3>Spending versus moving money</h3>
+      <p>
+        Money sent to savings, held for someone else, or used to pay off your own credit card leaves the
+        account, but it isn't spending. Tally keeps those apart: savings and pass-through categories,
+        own-account transfers and split payments, so "out" stacks into spent and saved and the charts
+        agree with the totals.
+      </p>
+
+      <h3>Running without anyone watching</h3>
+      <p>
+        The app works fully in the browser, but alerts arrive when it's closed. A Postgres cron job calls
+        edge functions with a key held in Vault; refresh tokens live in a table with no client policies,
+        so only the server can read them. If a user revokes access, the next run sees it and turns the
+        feature off for them.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">JavaScript</span><span class="tag">HTML &amp; CSS</span><span class="tag">PWA</span>
+        <span class="tag">Service Worker</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Row-level security</span><span class="tag">Edge Functions</span><span class="tag">Deno</span>
+        <span class="tag">pg_cron</span><span class="tag">Gmail API</span><span class="tag">Google Identity Services</span>
+        <span class="tag">SMTP</span><span class="tag">Netlify</span><span class="tag">Playwright</span><span class="tag">node:test</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="../index.html#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+      <a href="ada.html">
+        Next: ADA
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js?v=3"></script>
+</body>
+</html>
