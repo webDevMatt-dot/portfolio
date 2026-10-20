@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neeps Inventory — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="An equipment inventory and sign-out system for Neeps Group — bulk sign-out and check-in with one signature, remote signing on the taker's phone with per-item confirmation and condition disputes, QR scanning, and photos sent straight from a phone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css?v=3">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Internal tool · Web &amp; mobile web</div>
+      <h1 class="reveal">Neeps Inventory</h1>
+      <p class="tagline reveal">
+        Equipment sign-out for a team that moves a lot of kit. Sign out a whole shoot's worth of
+        gear with one signature, let the person sign on their own phone, scan QR labels instead of
+        searching, and send device photos straight from the phone that took them.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Full-stack development</dd></div>
+        <div><dt>Backend</dt><dd>Django 5 · Python</dd></div>
+        <div><dt>Frontend</dt><dd>Bootstrap 5 · vanilla JS</dd></div>
+        <div><dt>Data</dt><dd>PostgreSQL on Render</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Internal, login-only tool for Neeps Group. Screens below use sample data — every name and record is fictional.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p>
+        Neeps Group already had a Django inventory with QR labels and a sign-out form — one device at a
+        time, signed on the office computer. That works for a laptop. It doesn't work for a shoot: nine
+        lenses, batteries, mics and a gimbal meant nine forms and nine signatures, drawn with a mouse,
+        by someone who isn't sitting at the desk.
+      </p>
+      <p>
+        The goal was <strong>to make handing out and taking back equipment as fast as the handover itself</strong>
+        — without losing the record. Every item still needs a person, a condition, a date and a
+        signature; the work was getting all of that in one pass, on whichever device is to hand.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+      <div class="features">
+        <div class="feature">
+          <h4>Bulk sign-out &amp; check-in</h4>
+          <p>Tick devices — or click a person's name to grab everything they have — and sign them out or back in together. One signature, one record per device, written in a single transaction.</p>
+        </div>
+        <div class="feature">
+          <h4>Sign on your own phone</h4>
+          <p>Instead of signing with a mouse, send a link — or show a QR code to scan on the spot. No login: a private, single-use link that expires after seven days and can be replaced.</p>
+        </div>
+        <div class="feature">
+          <h4>Confirm every item, dispute the condition</h4>
+          <p>On the phone, each item needs an answer — "I have it" or "Not with me" — and the taker can say the condition doesn't match, with their own rating and a note. Returns work the same way.</p>
+        </div>
+        <div class="feature">
+          <h4>Scan to sign out or check in</h4>
+          <p>Point a phone or laptop camera at the QR labels, use a USB scanner, or type a serial or asset tag. Each scan beeps onto a list; one tap opens bulk sign-out or check-in.</p>
+        </div>
+        <div class="feature">
+          <h4>Photos from the phone, live</h4>
+          <p>"Add photos from phone" on the device form shows a QR code. Photos taken on the phone are shrunk on the device, uploaded, and appear on the laptop within seconds — then saved with the device.</p>
+        </div>
+        <div class="feature">
+          <h4>History that answers questions</h4>
+          <p>Every sign-out ever, with live search, status and date filters and CSV export — who had it, when it came back, late or not, condition out → in, and how each side signed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <p class="shots-sub">Signing out a kit</p>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-devices.jpg" alt="Device list filtered by 'canon' with matches highlighted, two devices selected as chips and a 'Sign Out Selected (2)' button" loading="lazy" width="1440" height="900"></div>
+          <figcaption>Search updates as you type; picks stay selected across searches, shown as chips.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-bulk-signout.jpg" alt="Bulk sign-out form for four devices with person, purpose, return date and a 'Send a signing link' option" loading="lazy" width="1440" height="900"></div>
+          <figcaption>One form for the whole kit — and a choice of signing here or sending a link.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-link.jpg" alt="Signing link page with a QR code, copy button and WhatsApp, SMS, email and share buttons, waiting for a signature" loading="lazy" width="1440" height="900"></div>
+          <figcaption>The link: scan the QR on the spot, or send it. The page updates itself once they sign.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-link-signed.jpg" alt="Signed link page showing the signature, two confirmed items, one condition dispute with the taker's note and one item marked not received" loading="lazy" width="1440" height="900"></div>
+          <figcaption>What came back: confirmed, disputed with a note, and one item they never got.</figcaption>
+        </figure>
+      </div>
+
+      <p class="shots-sub">On a phone</p>
+      <div class="shots phone browser">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-m-sign.jpg" alt="Phone page listing two items, each with 'I have it' and 'Not with me' buttons; one flagged with an issue" loading="lazy" width="848" height="1672"></div>
+          <figcaption>Every item needs an answer before they can sign.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-m-sign-2.jpg" alt="Condition dispute set to Fair with a note, a finger-drawn signature and a ticked confirmation" loading="lazy" width="848" height="1672"></div>
+          <figcaption>Disagree with the condition, then sign with a finger.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-m-photos.jpg" alt="Phone photo page with a large 'Take a photo' button and three sent photos" loading="lazy" width="848" height="1672"></div>
+          <figcaption>Device photos: one big button, live on the laptop.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-m-return.jpg" alt="Return page showing the condition recorded on return, what it was when it left, and a disagreement note" loading="lazy" width="848" height="1672"></div>
+          <figcaption>Returns are signed too — against the condition recorded coming back.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-m-scan.jpg" alt="Scan page in check-in mode with two devices added from scans" loading="lazy" width="848" height="1672"></div>
+          <figcaption>Scanning labels to build a check-in list.</figcaption>
+        </figure>
+      </div>
+
+      <p class="shots-sub">Coming back</p>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-checkouts.jpg" alt="Checked-out devices dashboard with overdue items, awaiting-signature badges and a 'Check In Selected' button" loading="lazy" width="1440" height="900"></div>
+          <figcaption>What's out, what's overdue, and what's still waiting on a signature.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-bulk-checkin.jpg" alt="Bulk check-in table with condition on return per device, a 'Same as when it left' shortcut and the returner's signature step" loading="lazy" width="1440" height="900"></div>
+          <figcaption>Condition on return per device — with the taker's earlier dispute right there.</figcaption>
+        </figure>
+      </div>
+
+      <p class="shots-sub">Faster input</p>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-scan.jpg" alt="Scan station with three scanned devices ready to sign out and a warning that one scanned device is already signed out" loading="lazy" width="1440" height="900"></div>
+          <figcaption>Camera, USB scanner or typing — and a nudge when a scan doesn't fit the mode.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-add-phone.jpg" alt="Add device form with a QR code and three photos received from a phone" loading="lazy" width="1440" height="900"></div>
+          <figcaption>Fill in the details on the laptop while the photos arrive from the phone.</figcaption>
+        </figure>
+      </div>
+
+      <p class="shots-sub">The record</p>
+      <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-history.jpg" alt="Sign-out history table with search, status and date filters, CSV export and signature status per row" loading="lazy" width="1440" height="900"></div>
+          <figcaption>Every sign-out, searchable and exportable.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/inv-device.jpg" alt="Device page showing who has it, a signed badge, and a photo gallery added from a phone" loading="lazy" width="1440" height="900"></div>
+          <figcaption>Each device: who has it, whether they signed, and its photos.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <div class="arch">
+<pre>  <b>Django 5.2</b>   server-rendered, Bootstrap 5, deployed on Render
+    ├── /checkout/bulk/            one form → a DeviceCheckout per device, atomically
+    ├── /checkout/bulk-checkin/    condition + note per device, one return signature
+    ├── /checkout/history/         filters + pagination, partial HTML for live search, CSV
+    ├── /scan/  /scan/lookup/      QR URL, token, serial or asset tag → device + status
+    └── /photos/session/           laptop side of a phone-photo session (QR, poll, delete)
+
+  <b>Public, token-scoped pages</b>   no login — the UUID in the URL is the credential
+    ├── /sign/&lt;token&gt;/            confirm each item, dispute condition, sign (out or return)
+    └── /p/&lt;token&gt;/               take photos, shrink on the phone, upload with progress
+
+  <b>Models</b>
+    ├── SignatureRequest           kind = sign-out | return, expiry, signed_at, signer IP
+    ├── DeviceCheckout             per-item answer, disputes, out + return signatures
+    ├── PhotoUploadSession         12-hour link, optional device
+    └── StagedPhoto                photos waiting for a device that isn't saved yet
+
+  <b>Browser</b>   vanilla JS, no build step
+    ├── BarcodeDetector → jsQR     native QR decoding where available, fallback elsewhere
+    ├── canvas resize              2048px JPEG before upload
+    └── FormDraft                  autosave to localStorage, cleared only on success</pre>
+      </div>
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          A signing link doesn't hold the equipment hostage. The devices are signed out the moment the
+          operator submits — because physically, they've already left the building — and "awaiting
+          signature" is a visible state on the dashboard, the device page and the history rather than a
+          gate. The alternative, keeping devices "in" until someone signs on their phone later, would make
+          the inventory lie about where things actually are.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>One signature, many honest records</h3>
+      <p>
+        A batch is a convenience for the person signing, not a new kind of record. Bulk sign-out still
+        writes one checkout per device, each with its own audit-log entry, so history, overdue tracking
+        and check-in work exactly as they did for single devices. The batch only exists as the signing
+        request they share — which is also how "check in all from this batch" and "one return link per
+        person" fall out naturally.
+      </p>
+
+      <h3>Two signatures on one record</h3>
+      <p>
+        Adding return signatures meant a checkout now carries two independent acts: what the taker
+        confirmed going out, and what they confirmed coming back. They're stored side by side — separate
+        signature, dispute and link fields — so signing for a return can never overwrite what was agreed
+        at sign-out, and a test pins that down.
+      </p>
+
+      <h3>Scanning without an app</h3>
+      <p>
+        The QR labels already encoded a URL, so the scanner accepts the full URL, the bare token, a
+        serial or an asset tag. Chrome on Android decodes with the native <code>BarcodeDetector</code>;
+        everywhere else lazily loads <code>jsQR</code>. The same label stays in frame for several
+        reads, so repeats are ignored for a couple of seconds, and USB scanners just work because they
+        type into the field and press Enter.
+      </p>
+
+      <h3>Nothing lost to a refresh</h3>
+      <p>
+        Every multi-step form autosaves — fields, selections and even a half-drawn signature — and the
+        draft is only cleared once the server confirms. On the phone signing page it survives a failed
+        submit too. Phone photos for a device that hasn't been saved yet are staged server-side and the
+        laptop panel reopens the same session after a refresh, so a validation error on "Add Device"
+        never costs the photos.
+      </p>
+
+      <h3>Photos that upload on mobile data</h3>
+      <p>
+        A 12-megapixel photo is several megabytes. Resizing it on the phone with
+        <code>createImageBitmap</code> and a canvas — respecting EXIF orientation — before upload turns
+        it into a few hundred kilobytes, so a batch of photos arrives in seconds on a weak signal. The
+        server still validates every file as an image and enforces the ten-photo limit.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">Django 5.2</span><span class="tag">Python</span><span class="tag">PostgreSQL</span>
+        <span class="tag">Bootstrap 5</span><span class="tag">Vanilla JS</span><span class="tag">BarcodeDetector</span>
+        <span class="tag">jsQR</span><span class="tag">qrcode</span><span class="tag">Pillow</span>
+        <span class="tag">Canvas API</span><span class="tag">WhiteNoise</span><span class="tag">Gunicorn</span>
+        <span class="tag">Render</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="../index.html#work">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+      <a href="neeps-group.html">
+        Next: Neeps Group
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js?v=3"></script>
+</body>
+</html>
