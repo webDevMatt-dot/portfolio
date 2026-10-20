@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ADA — Case Study | Matthew Gift Luis</title>
-<meta name="description" content="A church digital platform for Mozambique: Next.js and Django on a self-hosted Docker stack, with a congregation directory, shop, recruitment, prayer and helpline handling, and a full admin console.">
+<meta name="description" content="The public website and communications back office of a national church in Mozambique: Next.js and Django on a self-hosted Docker stack, with the Apostle's weekly update imported and machine-translated, a congregation directory of 1,508 churches, media approvals, prayer wall, careers, and a two-factor, bilingual admin console wired to the church's ERP and app.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -32,9 +32,10 @@
       <div class="eyebrow reveal">Case study · Platform &amp; infrastructure</div>
       <h1 class="reveal">ADA</h1>
       <p class="tagline reveal">
-        Not <strong>just</strong> a church website. A digital platform for a national denomination in Mozambique — thousands
-        of assemblies across districts, a shop, recruitment, pastoral care and a full admin console,
-        running on infrastructure I provisioned and maintain.
+        Not <strong>just</strong> a church website. The public voice and communications back office of a national
+        denomination in Mozambique — the Apostle's weekly word imported and translated, a directory of
+        1,508 churches on a map, prayer, media approvals, careers and a bilingual two-factor admin console —
+        wired to the church's ERP and member app, on infrastructure I provisioned and maintain.
       </p>
 
       <dl class="meta reveal">
@@ -46,7 +47,8 @@
       <p class="live-note reveal">
         <span>Live site:</span>
         <a href="https://ada.org.mz/" target="_blank" rel="noopener">ada.org.mz</a>
-        <span>— fully bilingual Portuguese and English, serving congregations across Mozambique.</span>
+        <span>— fully bilingual Portuguese and English. Sister systems: the church's ERP and the
+        <a href="my-ada.html">My ADA app</a>.</span>
       </p>
     </div>
   </section>
@@ -78,8 +80,8 @@
           <p>Districts and assemblies with leaders, contacts and coordinates, searchable and plotted on an interactive Leaflet map so someone can find the nearest congregation.</p>
         </div>
         <div class="feature">
-          <h4>Shop &amp; orders</h4>
-          <p>Product listings, cart, checkout and order history — a full commerce path inside the same platform rather than bolted on elsewhere.</p>
+          <h4>The Apostle's Update</h4>
+          <p>Each week's letter is imported from the ministry's site at dawn, machine-drafted into Portuguese, reviewed and published — with a featured story, year navigation, comments from the website and the app, and credit to the source only where it applies.</p>
         </div>
         <div class="feature">
           <h4>Accounts with OTP</h4>
@@ -94,17 +96,20 @@
           <p>Confidential prayer requests and helpline contacts routed to the right people, with the sensitivity that implies about who can read what.</p>
         </div>
         <div class="feature">
-          <h4>Updates, FAQ, media</h4>
-          <p>News and announcements with individual pages, a maintained FAQ, and a media library — all editable without a deploy.</p>
+          <h4>Businesses, watch, the app</h4>
+          <p>The ACBF directory of member-run businesses with a public sign-up form; a watch page for Ezekiel TV; the word of the day from the app; store badges, a Smart App Banner and an /app page so the website hands members to My ADA.</p>
         </div>
       </div>
 
       <h3>The admin console</h3>
       <p>
-        Fifteen or so areas covering the whole operation: users, candidates, messages, live chat,
-        prayers, helpline, updates, FAQ, decisions, media and media approval, analytics, activity logs,
-        history, API health and site configuration. The console is the actual product — the public site
-        is what it renders.
+        Twenty areas covering the whole operation: a dashboard of each person's queues by urgency,
+        inbox and decisions, a bilingual updates editor with a translate button, media approval with
+        archiving, prayers, live chat with quick replies, helpline, candidates, the ACBF review
+        workspace, users and security, activity log, analytics, API docs — and a My ADA section that
+        shows every app version in use, dormant accounts and reactivation requests, read live from the
+        ERP. Portuguese and English, dark mode, keyboard shortcuts, smart search, desktop
+        notifications. The console is the actual product — the public site is what it renders.
       </p>
       <div class="callout">
         <span class="k">Design decision</span>
@@ -134,6 +139,22 @@
 
       <p class="shots-sub">Admin console</p>
       <div class="shots">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ada-updates-admin.jpg" alt="Updates portal in the admin: pending, scheduled, live and incomplete tabs with cards for Apostle's Update weeks" loading="lazy" width="1500" height="864"></div>
+          <figcaption>Updates portal — imported weeks waiting for review, each card saying what is missing.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ada-editor.jpg" alt="Bilingual update editor with English and Portuguese side by side and a Translate to Portuguese button" loading="lazy" width="1500" height="821"></div>
+          <figcaption>The bilingual editor — English and Portuguese side by side, one click to draft the translation.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ada-versions.jpg" alt="App version insights: registered phones, on latest version, adoption bars per version and an attention card" loading="lazy" width="1500" height="1000"></div>
+          <figcaption>My ADA from the website — every app version in use, adoption, and a 'please update' nudge, read live from the ERP.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/ada-media-archive.jpg" alt="Media approval queue with keyboard shortcut legend, pending posters from branches and approve, changes and reject actions" loading="lazy" width="1500" height="863"></div>
+          <figcaption>Media approval — J/K to move, A to approve, R to reject; old submissions archive themselves after 30 days.</figcaption>
+        </figure>
         <figure class="shot-item">
           <div class="shot filled"><img src="../assets/shots/ada-admin.jpg" alt="Admin dashboard with live users, daily, weekly and monthly visits, and sections for users, analytics, vendors and candidates" loading="lazy" width="1459" height="912"></div>
           <figcaption>The admin console home — live visitors and every area of the platform at a glance.</figcaption>
@@ -180,9 +201,12 @@
        │
        └── internal-api/proxy   server-side fetch, domain allowlist
 
-  <b>Django apps</b>  accounts · churchdata · shop · updates · content
-                 prayers · helpline · chat · contact · faq · media
-                 media_approval · analytics · activity_logs · history</pre>
+  <b>Django apps</b>  accounts · updates · prayers · helpline · chat · contact
+                 faq · media · media_approval · analytics · activity_logs
+                 history · inbox · alerts · shop · core
+
+  <b>Jobs</b>   07:20 import the Apostle's Update  ·  07:50 copy updates to the ERP
+         06:50 morning digest  ·  02:10 housekeeping  ·  02:40 backup  ·  03:10 restore test</pre>
       </div>
 
       <h3>The proxy layer</h3>
@@ -193,6 +217,15 @@
         parameter can't turn the server into an open relay. That same layer is what lets the platform
         pull from the denomination's separate finance system without ever putting its token in a
         browser.
+      </p>
+
+      <h3>Three systems, one key each</h3>
+      <p>
+        The website talks to the ERP with a scoped, non-expiring service key that can do exactly
+        four things — read app adoption, list dormant accounts, decide reactivations, and push
+        updates — and nothing else. The ERP announces each new Apostle's Update to the app with one
+        push; comments made in the app come back to the website under the same story. Nobody
+        signs in twice, and no key can do more than its job.
       </p>
     </div>
   </section>
@@ -223,6 +256,23 @@
         risky step is never the code — it's the half-remembered command sequence.
       </p>
 
+      <h3>Translation that knows when to stop</h3>
+      <p>
+        The weekly letter runs to several thousand words, and the free translation tiers throttle
+        hard. The importer paces itself per minute, backs off and resumes, splits long stories at
+        paragraph boundaries rather than mid-sentence, and — when Azure's monthly allowance runs out —
+        says so on the Translate button instead of failing quietly. Translated text credits the
+        machine; imported text credits the source; original writing credits neither.
+      </p>
+
+      <h3>Finding what was broken</h3>
+      <p>
+        A fresh review of the live site in October found a login with no rate limit, an API relay
+        that would forward any path with a privileged token attached, and a test runner silently
+        skipping a quarter of the suite. All three were fixed the same week, with tests that would
+        catch their return, before any of the new work shipped on top.
+      </p>
+
       <h3>Bilingual, not translated</h3>
       <p>
         The platform runs fully in Portuguese and English — over a thousand translated strings
@@ -247,6 +297,7 @@
         <span class="tag">Recharts</span><span class="tag">Django</span><span class="tag">DRF</span>
         <span class="tag">Python</span><span class="tag">PostgreSQL 15</span><span class="tag">gunicorn</span>
         <span class="tag">Docker Compose</span><span class="tag">nginx</span><span class="tag">Certbot</span>
+        <span class="tag">AWS S3</span><span class="tag">Azure Translator</span><span class="tag">TOTP 2FA</span>
       </div>
     </div>
   </section>
@@ -257,8 +308,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
         Dookie Deluxe
       </a>
-      <a href="be-africa.html">
-        Next: BE Africa
+      <a href="my-ada.html">
+        Next: My ADA app
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>

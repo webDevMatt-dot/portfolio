@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My ADA — Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A church member app for Mozambique on both app stores: chat and groups, the Apostle's Update as a channel, a Bible in local languages with offline packs, giving, events and a leaders' toolkit — React Native over a Django ERP, shipped daily over the air.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css?v=3">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <a href="../index.html#work" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      All work
+    </a>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cs-hero">
+    <div class="wrap">
+      <div class="eyebrow reveal">Case study · Mobile app &amp; platform</div>
+      <h1 class="reveal">My ADA</h1>
+      <p class="tagline reveal">
+        The member app for a national church in Mozambique — a WhatsApp-grade community, the
+        Apostle's weekly word as a channel, a Bible in local languages that works offline, giving by
+        M-Pesa, and a toolkit for the leaders of <strong>1,508 assemblies</strong>. On both stores,
+        updated over the air almost daily.
+      </p>
+
+      <dl class="meta reveal">
+        <div><dt>Role</dt><dd>Mobile, backend &amp; release engineering</dd></div>
+        <div><dt>App</dt><dd>React Native · Expo</dd></div>
+        <div><dt>Backend</dt><dd>Django · DRF · PostgreSQL · WebSockets</dd></div>
+        <div><dt>Hosting</dt><dd>AWS (EC2, RDS, S3) · Cape Town</dd></div>
+      </dl>
+      <p class="live-note reveal">
+        <span>Live:</span>
+        <a href="https://apps.apple.com/app/myada-avante-na-f%C3%A9/id6804218181" target="_blank" rel="noopener">App Store</a>
+        <span>·</span>
+        <a href="https://play.google.com/store/apps/details?id=com.giftluis.adafinance" target="_blank" rel="noopener">Google Play</a>
+        <span>— version 3.0.4, Portuguese and English, following the phone's language.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The brief</h2>
+      <p>
+        The denomination already had a back office (its ERP, which I also build) and a public website.
+        What it did not have was a way to reach its members directly: the Apostle's weekly update went
+        out as a PDF forwarded on WhatsApp, group conversations lived in dozens of unofficial groups,
+        and a treasurer in a district with no fibre line had no way to declare what was collected on
+        Sunday except by phone call.
+      </p>
+      <p>
+        The app had to be the <strong>member's front door</strong> to the church: two taps to
+        anything that matters, in their language, on a cheap Android phone on a slow connection — and
+        it had to be shipped and improved continuously without waiting weeks for store review.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>What I built</h2>
+
+      <h3>For members</h3>
+      <div class="features">
+        <div class="feature">
+          <h4>Community that feels like WhatsApp</h4>
+          <p>National, provincial, district and assembly chats plus groups and direct messages: voice notes, photos, video, documents, GIFs and stickers, quotes, forwarding, read receipts, starred and pinned messages, drafts, search, a full-screen media viewer with share and save, and group info with an A–Z member scrubber.</p>
+        </div>
+        <div class="feature">
+          <h4>The Apostle's Update as a channel</h4>
+          <p>Each week's word arrives as a post in a channel feed with reactions and threaded comments, pushed once to every member and mirrored on the website — imported from the ministry's source, machine-drafted into Portuguese, reviewed by the team.</p>
+        </div>
+        <div class="feature">
+          <h4>A Bible that works without signal</h4>
+          <p>KJV plus licensed YouVersion versions including Makhuwa-Meetto, Sena and Shona; whole-version packs downloaded on Wi-Fi and searched locally; highlights, bookmarks, verse cards, read-alongside, reading plans with streaks, and a word-of-the-day widget on the home screen.</p>
+        </div>
+        <div class="feature">
+          <h4>Giving, events and church life</h4>
+          <p>Give by M-Pesa or declare for the treasurer; events and Big Sundays with RSVP; attendance by QR; find the nearest church on a live map; live TV with picture-in-picture; notes with a handwriting pad; the ACBF business directory.</p>
+        </div>
+      </div>
+
+      <h3>For leaders and treasurers</h3>
+      <div class="features">
+        <div class="feature">
+          <h4>Contributions from the pew</h4>
+          <p>Collective submissions with proof of payment, contributor statements, assembly and national dues reports, approvals inbox — the same ledger the finance team closes each month, reachable from a phone.</p>
+        </div>
+        <div class="feature">
+          <h4>Putting the church on the map</h4>
+          <p>Leaders capture a GPS pin and photo for their building; it waits in an approvals inbox with accuracy flags and history. Ninety per cent of the map was empty when we started.</p>
+        </div>
+        <div class="feature">
+          <h4>Members, visitors, announcements</h4>
+          <p>Member approvals and linking, visitor follow-up, announce a Big Sunday to a district or province, see who is coming and who cannot.</p>
+        </div>
+        <div class="feature">
+          <h4>Accounts that look after themselves</h4>
+          <p>Phone verification, Google and Apple sign-in, two-factor, inactivity rules with a reactivation request flow approved in either back office, account deletion that keeps pledge history.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="k">Design decision</span>
+        <p>
+          Chat exists so the church <em>owns</em> its community and its data — not to out-build
+          WhatsApp. So every feature was judged by one test: does it serve the church, and would a
+          member in Nampula on 3G use it? Anything that failed that test (a flip-book reader, a
+          document viewer for video) was replaced by the behaviour people already know.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Screens</h2>
+      <p class="sec-sub" style="margin-bottom:24px">
+        Captured on a live production phone. The member list is cropped to the signed-in user, and the
+        commenter below is a stand-in name.
+      </p>
+      <div class="shots phone">
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/myada-home.jpg" alt="My ADA home: greeting, word of the day card, reading plan and quick access tiles" loading="lazy" width="700" height="1514"></div>
+          <figcaption>Home — word of the day, reading plan, quick access</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/myada-bible.jpg" alt="Bible reader showing Psalm 56 in NIV with the Portuguese version read alongside, and verse actions" loading="lazy" width="700" height="1515"></div>
+          <figcaption>Bible — NIV read alongside Portuguese, verse actions</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/myada-group.jpg" alt="Group info for the national chat: 399 members, Search, Media and Mute actions, Members / Media / Settings tabs" loading="lazy" width="700" height="779"></div>
+          <figcaption>Group info — 399 members, quick actions, tabs</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/myada-video.jpg" alt="Full-screen video in the media viewer with play, skip, thumbnail strip, Share and Show in chat" loading="lazy" width="700" height="1514"></div>
+          <figcaption>Media viewer — full-screen video, share, show in chat</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot filled"><img src="../assets/shots/myada-comments.jpg" alt="Comments sheet on an Apostle's Update, in Portuguese, with one comment and a composer" loading="lazy" width="700" height="871"></div>
+          <figcaption>Apostle's Update — comments sheet, in Portuguese</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Architecture</h2>
+      <p>
+        The app is a client of the church's ERP rather than a service of its own. Everything a member
+        sees comes from the same Django back end that the finance and HR teams use — one register of
+        people, churches and money.
+      </p>
+      <div class="arch">
+<pre>  <b>My ADA</b>  React Native · Expo 57 · one JS runtime on iOS and Android
+     │  HTTPS (scoped tokens)          │  WebSocket (chat), polling fallback
+     ▼                                 ▼
+  <b>Finanças ERP</b>  Django 5 · DRF · gunicorn (graceful reload) · realtime service
+     │        │          │            │
+     ▼        ▼          ▼            ▼
+  <b>PostgreSQL</b>  <b>S3</b> media   <b>Expo Push</b>   <b>Website</b> (ada.org.mz)
+  on RDS     signed URLs  APNs / FCM    scoped service key: updates,
+                                        comments, app health, accounts
+
+  <b>Over the air</b>  JS changes publish in minutes to every phone (Expo Updates);
+                 native changes batch into store releases every few weeks.</pre>
+      </div>
+
+      <h3>Who may do what</h3>
+      <p>
+        A member can only see their own assembly's money; a district administrator sees their
+        district; HQ sees everything. The same permission model that governs the ERP's reports
+        governs the app's screens, so adding a report to the ERP makes it available on the phone to
+        exactly the same people, with no second rule book to keep in step.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>The harder parts</h2>
+
+      <h3>Shipping daily to phones in people's pockets</h3>
+      <p>
+        Between 29 September and 19 October the app went from 2.4.4 to 3.0.4 — sixteen versions,
+        the first App Store release, iPad support, and then daily over-the-air updates. The trick was
+        putting both platforms on <em>one</em> runtime so a single publish reaches every phone, and
+        keeping a strict line between what ships over the air (almost everything) and what needs a
+        store build (native modules, widgets, sign-in providers).
+      </p>
+
+      <h3>Chat that behaves on a bad network</h3>
+      <p>
+        An inverted list anchored at the bottom that never jumps when the keyboard or a quote changes
+        height; sends that retry on their own and say <em>why</em> they failed rather than "tap to
+        retry"; images that show a placeholder instead of a blank bubble; a WebSocket for live
+        updates with polling underneath for when the socket cannot connect. Each of these was a bug
+        report from a real member before it was a feature.
+      </p>
+
+      <h3>Video on a phone is not a document</h3>
+      <p>
+        Videos sent as files opened in a web view that showed black for twenty seconds. The fix was a
+        proper media viewer: only the video on screen loads, it fills the screen like a photo, tap hides
+        the chrome, and it has its own play, scrub, mute and full-screen controls — plus a fix on the
+        server for files stored with the wrong content type, so older uploads opened correctly too.
+      </p>
+
+      <h3>Not locking people out</h3>
+      <p>
+        An inactivity rule that disables dormant accounts is good security and a terrible first
+        impression when it hits a treasurer on month-end. So the app recognises the "disabled" answer,
+        offers a one-tap reactivation request, and the request lands in both back offices with a
+        decision that re-enables the account and tells the member.
+      </p>
+
+      <h3>A Bible that respects licences and bandwidth</h3>
+      <p>
+        Local-language Bibles come from YouVersion under licence, fetched through our API so keys never
+        reach the phone, and cached per version. Whole-version packs are gzipped with ETags so a 4 MB
+        download on Wi-Fi gives a member their Bible for ever — searchable with accent-insensitive,
+        whole-word matching even in airplane mode.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <h2>Stack</h2>
+      <div class="tags">
+        <span class="tag">React Native</span><span class="tag">Expo 57</span><span class="tag">EAS Build &amp; Updates</span>
+        <span class="tag">iOS</span><span class="tag">Android</span><span class="tag">WidgetKit</span>
+        <span class="tag">Django 5</span><span class="tag">DRF</span><span class="tag">WebSockets</span>
+        <span class="tag">PostgreSQL</span><span class="tag">AWS EC2 · RDS · S3</span><span class="tag">Expo Push · APNs · FCM</span>
+        <span class="tag">M-Pesa</span><span class="tag">YouVersion API</span><span class="tag">Google &amp; Apple Sign-In</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cs-nav">
+      <a href="ada.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        ADA website
+      </a>
+      <a href="be-africa.html">
+        Next: BE Africa
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script src="../assets/case.js?v=3"></script>
+</body>
+</html>
