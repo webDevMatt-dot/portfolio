@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Matthew Gift Luis — Full-Stack Developer &amp; Founder</title>
 <meta name="description" content="Full-stack developer building web platforms, e-commerce systems, mobile apps and business automation. Founder of Godji Tech (PTY) Ltd.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<meta property="og:image" content="https://webdevmatt-dot.github.io/portfolio/assets/brand/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#08090c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -71,7 +79,9 @@
   header.scrolled{border-bottom-color:var(--line)}
   nav{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:15px}
-  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);flex:none}
+  .brand img{display:block;height:24px;width:auto}
+  .brand .brand-mark{display:none;height:26px}
+  @media(max-width:520px){.brand .brand-lockup{display:none}.brand .brand-mark{display:block}}
   .nav-links{display:flex;gap:26px;align-items:center}
   .nav-links a{font-size:14px;color:var(--muted);transition:color .18s}
   .nav-links a:hover{color:var(--text)}
@@ -238,6 +248,8 @@
 
   footer{border-top:1px solid var(--line);padding:30px 0;position:relative;z-index:1}
   .foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;font-size:13.5px;color:var(--dim)}
+  .foot-left{display:flex;align-items:center;gap:12px}
+  .foot-mark{height:18px;width:auto;opacity:.85}
   .foot a{transition:color .18s}
   .foot a:hover{color:var(--accent)}
 
@@ -260,7 +272,10 @@
 
 <header id="hdr">
   <nav>
-    <a href="#top" class="brand"><span class="dot"></span> <span class="mono">webDevMatt</span></a>
+    <a href="#top" class="brand" aria-label="webDevMatt, back to top">
+      <img class="brand-lockup" src="assets/brand/wdm-lockup.png" alt="WDM | webDevMatt" width="939" height="72">
+      <img class="brand-mark" src="assets/brand/wdm-mark.png" alt="WDM" width="245" height="96">
+    </a>
     <div class="nav-links">
       <a href="#work">Work</a>
       <a href="#about">About</a>
@@ -842,7 +857,7 @@
 
 <footer>
   <div class="wrap foot">
-    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span class="foot-left"><img class="foot-mark" src="assets/brand/wdm-mark.png" alt="WDM" width="245" height="96"><span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span></span>
     <span><a href="https://github.com/webDevMatt-dot" target="_blank" rel="noopener">github.com/webDevMatt-dot</a></span>
   </div>
 </footer>

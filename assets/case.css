@@ -48,6 +48,9 @@ header{
 }
 header.scrolled{border-bottom-color:var(--line)}
 nav{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-left{display:flex;align-items:center;gap:18px}
+.home-mark img{display:block;height:24px;width:auto}
+.home-mark{padding-right:18px;border-right:1px solid var(--line)}
 .back{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);transition:color .18s}
 .back:hover{color:var(--text)}
 .back svg{width:15px;height:15px}
