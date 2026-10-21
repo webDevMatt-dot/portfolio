@@ -319,9 +319,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="status reveal"><span class="pulse"></span> Open to freelance, contract &amp; full-time roles</div>
+      <div class="status reveal" data-pf="status"><span class="pulse"></span> Open to freelance, contract &amp; full-time roles</div>
       <h1 class="reveal">Full-stack software engineer<br>building <span class="grad">products that ship</span>.</h1>
-      <p class="lede reveal">
+      <p class="lede reveal" data-pf="hero_lede">
         I design and build web platforms, e-commerce systems, mobile apps and the automation that
         holds a business together — front end to infrastructure. Co-founder of
         <strong>Godji&nbsp;Tech (PTY) Ltd</strong>.
@@ -706,7 +706,7 @@
       <div class="sec-label reveal">About</div>
       <h2 class="reveal">Engineer first. Co-founder second.</h2>
       <div class="about-grid" style="margin-top:26px">
-        <div class="about-body reveal">
+        <div class="about-body reveal" data-pf="about">
           <p>
             I build software end to end. That means the <strong>Next.js</strong> front end a user
             actually touches, the <strong>Node, Python or PHP</strong> services behind it, the
@@ -754,7 +754,7 @@
       <div class="sec-label reveal">Experience</div>
       <h2 class="reveal">Where I work</h2>
       <p class="sec-sub reveal">Current and recent roles. The full detail is in my CV.</p>
-      <div class="xp">
+      <div class="xp" data-pf="experience">
         <div class="xp-item reveal">
           <div class="xp-when mono">Aug 2026 – Present</div>
           <div><h3>Co-Founder &amp; Software Engineer <span>· Godji Tech (PTY) Ltd</span></h3>
@@ -868,7 +868,7 @@
     <div class="wrap">
       <div class="contact-card reveal">
         <h2>Let's build something</h2>
-        <p>
+        <p data-pf="contact_text">
           Open to freelance projects, contract work and full-time roles. If you've got a product to
           ship or a system that needs untangling, I'd like to hear about it.
         </p>
@@ -895,7 +895,7 @@
           </a>
         </div>
         <div class="wa-note mono">
-          +258 84 701 0340 &nbsp;·&nbsp; +27 71 613 4107 &nbsp;·&nbsp; mgluis530@gmail.com
+          +258 84 701 0340 &nbsp;·&nbsp; +27 71 613 4107 &nbsp;·&nbsp; <span data-pf="email">mgluis530@gmail.com</span>
         </div>
       </div>
     </div>
@@ -913,24 +913,21 @@
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Work: project count + filter by type (?work=apps keeps the filter in shareable links)
+  // Work: project count + filter by type (?work=apps keeps the filter in shareable links).
+  // window.pfWork() runs again when assets/pf.js swaps in the live project list.
   (function(){
     var grid = document.querySelector('.projects');
-    var cards = Array.prototype.slice.call(grid.querySelectorAll('.proj'));
     var chips = Array.prototype.slice.call(document.querySelectorAll('.wf-chip'));
     var status = document.querySelector('.wf-status');
     var count = document.getElementById('projCount');
-    if (count) count.textContent = cards.length;
+    var cards = [];
+    var current = new URLSearchParams(location.search).get('work') || 'all';
 
     function has(card, f){ return f === 'all' || (' ' + card.dataset.cats + ' ').indexOf(' ' + f + ' ') > -1; }
-    chips.forEach(function(chip){
-      var n = cards.filter(function(c){ return has(c, chip.dataset.filter); }).length;
-      chip.querySelector('.wf-n').textContent = n;
-      if (!n) chip.hidden = true;
-    });
 
     function apply(f, push){
-      if (!chips.some(function(c){ return c.dataset.filter === f; })) f = 'all';
+      if (!chips.some(function(c){ return c.dataset.filter === f && !c.hidden; })) f = 'all';
+      current = f;
       var shown = 0;
       cards.forEach(function(card){
         var on = has(card, f);
@@ -958,7 +955,45 @@
     chips.forEach(function(chip){
       chip.addEventListener('click', function(){ apply(chip.dataset.filter, true); });
     });
-    apply(new URLSearchParams(location.search).get('work') || 'all', false);
+
+    function cardBehaviour(card){
+      card.addEventListener('pointermove', function(ev){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+      });
+      // Cards with a case study open it when clicked anywhere on the card.
+      // Real links inside (live site, the case study link itself) keep working,
+      // and selecting text doesn't count as a click. Ctrl/Cmd/middle-click open a new tab.
+      var study = card.querySelector('a.proj-link.study');
+      if(!study) return;
+      card.classList.add('has-study');
+      function go(newTab){
+        if(newTab) window.open(study.href, '_blank', 'noopener');
+        else location.href = study.href;
+      }
+      card.addEventListener('click', function(e){
+        if(e.target.closest('a')) return;
+        if(window.getSelection && String(window.getSelection())) return;
+        go(e.metaKey || e.ctrlKey);
+      });
+      card.addEventListener('auxclick', function(e){
+        if(e.button === 1 && !e.target.closest('a')) go(true);
+      });
+    }
+
+    window.pfWork = function(){
+      cards = Array.prototype.slice.call(grid.querySelectorAll('.proj'));
+      if (count) count.textContent = cards.length;
+      chips.forEach(function(chip){
+        var n = cards.filter(function(c){ return has(c, chip.dataset.filter); }).length;
+        chip.querySelector('.wf-n').textContent = n;
+        chip.hidden = !n;
+      });
+      cards.forEach(function(card){ if (!card.dataset.wired) { card.dataset.wired = '1'; cardBehaviour(card); } });
+      apply(current, false);
+    };
+    window.pfWork();
   })();
 
   var hdr = document.getElementById('hdr');
@@ -977,34 +1012,7 @@
     io.observe(el);
   });
 
-  document.querySelectorAll('.proj').forEach(function(card){
-    card.addEventListener('pointermove', function(ev){
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
-    });
-  });
-
-  // Cards with a case study open it when clicked anywhere on the card.
-  // Real links inside (live site, the case study link itself) keep working,
-  // and selecting text doesn't count as a click. Ctrl/Cmd/middle-click open a new tab.
-  document.querySelectorAll('.proj').forEach(function(card){
-    var study = card.querySelector('a.proj-link.study');
-    if(!study) return;
-    card.classList.add('has-study');
-    function go(newTab){
-      if(newTab) window.open(study.href, '_blank', 'noopener');
-      else location.href = study.href;
-    }
-    card.addEventListener('click', function(e){
-      if(e.target.closest('a')) return;
-      if(window.getSelection && String(window.getSelection())) return;
-      go(e.metaKey || e.ctrlKey);
-    });
-    card.addEventListener('auxclick', function(e){
-      if(e.button === 1 && !e.target.closest('a')) go(true);
-    });
-  });
 </script>
+<script src="assets/pf.js?v=1" data-root="" defer></script>
 </body>
 </html>

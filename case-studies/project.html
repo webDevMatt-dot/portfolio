@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Study | Matthew Gift Luis</title>
+<meta name="description" content="A project by Matthew Gift Luis, full-stack software engineer.">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+<meta property="og:image" content="https://webdevmatt-dot.github.io/portfolio/assets/brand/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#08090c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/case.css?v=3">
+<style>
+  .pf-loading{min-height:50vh;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+  .pf-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .pf-links a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:99px;border:1px solid var(--line-2);font-size:14px}
+  .pf-links a:hover{border-color:var(--accent)}
+  .shots.phones{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb orb-a"></div>
+<div class="bg-orb orb-b"></div>
+
+<header id="hdr">
+  <nav>
+    <div class="nav-left">
+      <a href="../index.html" class="home-mark" aria-label="webDevMatt home"><img src="../assets/brand/wdm-mark.png" alt="WDM" width="245" height="96"></a>
+      <a href="../index.html#work" class="back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All work
+      </a>
+    </div>
+    <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<main id="pf-main">
+  <div class="pf-loading" role="status">Loading…</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© <span id="yr">2026</span> Matthew Gift Luis · Godji Tech (PTY) Ltd</span>
+    <span><a href="../index.html">Back to portfolio</a></span>
+  </div>
+</footer>
+
+<script>
+  // Projects added in Godji Command get this page: case-studies/project.html?p=<slug>
+  window.pfProject = function (data) {
+    var slug = new URLSearchParams(location.search).get('p');
+    var p = (data.projects || []).filter(function (x) { return x.slug === slug; })[0];
+    var main = document.getElementById('pf-main');
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function md(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); }
+    function abs(u) { return /^https?:/.test(u) ? u : '../' + String(u).replace(/^\/+/, ''); }
+    if (!p) {
+      main.innerHTML = '<section class="cs-hero"><div class="wrap"><h1>Project not found</h1><p class="tagline">It may have been archived. <a href="../index.html#work">See all work</a>.</p></div></section>';
+      return;
+    }
+    document.title = p.title + ' — Case Study | Matthew Gift Luis';
+    var desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', p.summary.slice(0, 155));
+
+    // Write-up: blank line = paragraph, "## " = new section heading.
+    var sections = [], cur = { h: 'Overview', body: [] };
+    String(p.body || '').split(/\n\s*\n/).forEach(function (block) {
+      block = block.trim();
+      if (!block) return;
+      var m = block.match(/^##\s+(.+)$/m);
+      if (m && block.indexOf('##') === 0) {
+        if (cur.body.length) sections.push(cur);
+        cur = { h: m[1], body: [] };
+        var rest = block.replace(/^##\s+.+\n?/, '').trim();
+        if (rest) cur.body.push(rest);
+      } else cur.body.push(block);
+    });
+    if (cur.body.length) sections.push(cur);
+
+    var out = '<section class="cs-hero"><div class="wrap">' +
+      '<div class="eyebrow">Case study' + (p.type_label ? ' · ' + esc(p.type_label) : '') + '</div>' +
+      '<h1>' + esc(p.title) + '</h1><p class="tagline">' + md(p.summary) + '</p>' +
+      (p.metric ? '<p class="live-note"><span>' + esc(p.metric) + '</span></p>' : '') +
+      ((p.links || []).length ? '<div class="pf-links">' + p.links.map(function (l) { return '<a href="' + esc(l.href) + '" target="_blank" rel="noopener">' + esc(l.label) + ' ↗</a>'; }).join('') + '</div>' : '') +
+      '</div></section>';
+    sections.forEach(function (sec) {
+      out += '<section><div class="wrap"><h2>' + esc(sec.h) + '</h2>' + sec.body.map(function (b) { return '<p>' + md(b).replace(/\n/g, '<br>') + '</p>'; }).join('') + '</div></section>';
+    });
+    if ((p.shots || []).length) {
+      out += '<section><div class="wrap"><h2>Screens</h2><div class="shots' + (p.phones ? ' phones' : '') + '">' + p.shots.map(function (s, i) {
+        return '<figure class="shot-item"><div class="shot filled"><a href="' + esc(abs(s)) + '" target="_blank" rel="noopener"><img src="' + esc(abs(s)) + '" alt="' + esc(p.title) + ' screen ' + (i + 1) + '" loading="lazy"></a></div></figure>';
+      }).join('') + '</div></div></section>';
+    }
+    if ((p.tags || []).length) out += '<section><div class="wrap"><h2>Stack</h2><div class="tags">' + p.tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div></div></section>';
+    out += '<div class="wrap"><div class="cs-nav"><a href="../index.html#work">← All work</a><a href="../index.html#contact">Get in touch →</a></div></div>';
+    main.innerHTML = out;
+  };
+  // If the feed can't load, don't leave "Loading…" forever.
+  setTimeout(function () {
+    var l = document.querySelector('.pf-loading');
+    if (l) l.innerHTML = 'Couldn\'t load this project. <a href="../index.html#work" style="margin-left:6px;text-decoration:underline">See all work</a>';
+  }, 8000);
+</script>
+<script src="../assets/case.js?v=3"></script>
+<script src="../assets/pf.js?v=1" data-root="../" defer></script>
+</body>
+</html>
